@@ -22,8 +22,10 @@ def dfs(left, right, cnt):
             dfs(left, right + weight[idx], cnt + 1)
         visited[idx] = False
 
-
-factorial = [0, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880]
+factorial = [0] * 10
+factorial[1] = 1
+for i in range(2, 10):
+    factorial[i] = factorial[i-1] * i
 for t in range(1, int(input()) + 1):
     n = int(input())
     weight = list(map(int, input().split()))

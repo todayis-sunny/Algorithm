@@ -20,16 +20,18 @@ def click(x, y):
     dq.append((x, y))
     while dq:
         x, y = dq.popleft()
-        find += 1
+        # 이미 오픈된 버튼이라면 다음 버튼 오픈
+        if board[x][y] == 'C':
+            continue
         if board[x][y] == 0:
             for i in range(8):
                 nx = x + dx[i]
                 ny = y + dy[i]
-                if 0 <= nx < n and 0 <= ny < n and (nx, ny) not in dq:
+                if 0 <= nx < n and 0 <= ny < n:
                     if board[nx][ny] not in ['C', '*']:
                         dq.append((nx, ny))
         board[x][y] = 'C'
-
+        find += 1
 
 dx = [-1, -1, -1, 0, 0, 1, 1, 1]
 dy = [-1, 0, 1, -1, 1, -1, 0, 1]

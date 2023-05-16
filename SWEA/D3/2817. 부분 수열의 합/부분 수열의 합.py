@@ -16,9 +16,7 @@ def dfs(idx, tmp):
     dfs(idx + 1, tmp + arr[idx])
 
 
-tc = int(input())
-
-for t in range(1, tc + 1):
+for t in range(1, int(input()) + 1):
     n, k = map(int, input().split())
     arr = list(map(int, input().split()))
     ans = 0

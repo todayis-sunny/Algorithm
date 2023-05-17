@@ -1,7 +1,6 @@
 # 1215. 회문1 <D3>
 
-tc = 10
-for t in range(1, tc + 1):
+for t in range(1, 10 + 1):
     n = int(input())
     arr1 = [list(map(str, input())) for _ in range(8)]
     arr2 = list(zip(*arr1))

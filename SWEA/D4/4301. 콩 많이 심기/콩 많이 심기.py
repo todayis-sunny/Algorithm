@@ -1,8 +1,8 @@
 # 4301. 콩 많이 심기
 
 
-dx = [-2, 2, 0, 0]
-dy = [0, 0, -2, 2]
+dx = [2, 0]
+dy = [0, 2]
 for t in range(1, int(input()) + 1):
     N, M = map(int, input().split())
     board = [[True] * M for _ in range(N)]
@@ -14,9 +14,10 @@ for t in range(1, int(input()) + 1):
                 continue
             else:
                 ans += 1
-                for i in range(4):
+                for i in range(2):
                     nx = x + dx[i]
                     ny = y + dy[i]
                     if 0 <= nx < N and 0 <= ny < M:
                         board[nx][ny] = False
     print(f'#{t} {ans}')
+    

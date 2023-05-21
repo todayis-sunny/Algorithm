@@ -1,14 +1,12 @@
 # 1493. 수의 새로운 연산 <D3>
 
-tc = int(input())
-
 x_marking = [0, 1]
 k = 1
 for i in range(2, 301):
     k += i
     x_marking.append(k)
 
-for t in range(1, tc + 1):
+for t in range(1, int(input()) + 1):
     p, q = map(int, input().split())
     for px_idx in x_marking:
         if p <= px_idx:

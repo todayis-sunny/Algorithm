@@ -14,6 +14,7 @@ def solution(board):
     # 중복 승리 판별
     win_O = 0
     win_X = 0
+    # 가로
     for r in range(3):
         tmp = ''
         for c in range(3):
@@ -22,6 +23,7 @@ def solution(board):
             win_O += 1
         elif tmp == 'XXX':
             win_X += 1
+    # 세로
     for c in range(3):
         tmp = ''
         for r in range(3):
@@ -30,6 +32,7 @@ def solution(board):
             win_O += 1
         elif tmp == 'XXX':
             win_X += 1
+    # 대각
     diag1 = board[0][0] + board[1][1] + board[2][2]
     diag2 = board[0][2] + board[1][1] + board[2][0]
     if diag1 == 'OOO':
@@ -41,11 +44,11 @@ def solution(board):
     elif diag2 == 'XXX':
         win_X += 1
         
-    if win_O > 0 and win_X > 0:
+    if win_O > 0 and win_X > 0: # 둘 다 이긴 경우
         return 0
-    elif win_O > 0 and win_X == 0 and cnt_O == cnt_X:
+    elif win_O > 0 and win_X == 0 and cnt_O == cnt_X: # O가 이겼는데 O,X의 갯수가 같은 경우
         return 0
-    elif win_O == 0 and win_X > 0 and cnt_O != cnt_X:
+    elif win_O == 0 and win_X > 0 and cnt_O != cnt_X: # X가 이겼는데 O,X의 갯수가 같지 않은 경우
         return 0
-    else:
+    else: # 위의 상황을 제외하면 정상
         return 1

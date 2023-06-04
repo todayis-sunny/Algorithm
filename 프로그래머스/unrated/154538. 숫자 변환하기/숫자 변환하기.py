@@ -6,6 +6,7 @@ def solution(x, y, n):
     for k in range(3):
         # 연산 횟수, x, 연산 종류 
         dq.append((0, x, k))
+        visited.add(x)
     while dq:
         t, x, k = dq.popleft()
         if x == y:

@@ -1,10 +1,6 @@
-from collections import deque
-
 def solution(order):
     answer = 0
-    dq = deque(order)
     stack = []
-    limit = len(order)
     max_box = 0
     for box in order:
         if max_box < box:

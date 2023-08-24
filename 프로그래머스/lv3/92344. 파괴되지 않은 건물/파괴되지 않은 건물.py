@@ -5,8 +5,8 @@ def solution(board, skill):
     for S in skill:
         t, r1, c1, r2, c2, degree = S
         imos[r1][c1] += ((-1)**t) * degree
-        imos[r1][c2 + 1] += ((-1)**(t+1)) * degree
-        imos[r2 + 1][c1] += ((-1)**(t+1)) * degree
+        imos[r1][c2 + 1] -= ((-1)**t) * degree
+        imos[r2 + 1][c1] -= ((-1)**t) * degree
         imos[r2 + 1][c2 + 1] += ((-1)**t) * degree
     
     # 행 방향 누적합

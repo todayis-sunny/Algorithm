@@ -33,6 +33,7 @@ def click(x, y):
         board[x][y] = 'C'
         find += 1
 
+
 dx = [-1, -1, -1, 0, 0, 1, 1, 1]
 dy = [-1, 0, 1, -1, 1, -1, 0, 1]
 for t in range(1, int(input()) + 1):

@@ -1,24 +1,50 @@
-# 1209. Sum <D3>
+// [SWEA] 01209. Sum
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
-
-def maxSum(arr):
-    ans = 0
-    tmp1 = 0
-    tmp2 = 0
-    for i in range(len(arr)):
-        ans = max(ans, sum(arr[i]))
-        tmp1 += arr[i][i]
-        tmp2 += arr[i][-(i+1)]
-    ans = max(ans, tmp1, tmp2)
-
-    arr = list(zip(*arr))
-    for i in range(len(arr)):
-        ans = max(ans, sum(arr[i]))
-
-    return ans
-
-
-for t in range(1, 11):
-    n = int(input())
-    tmp = [list(map(int, input().split())) for _ in range(100)]
-    print(f'#{t} {maxSum(tmp)}')
+public class Solution {
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+	static StringTokenizer st;
+	public static void main(String[] args) throws IOException {
+		for(int tc = 1; tc <= 10; tc++) {
+			int[] row = new int[100];
+			int[] col = new int[100];
+			int[] dia = new int[2];
+			br.readLine();
+			for(int r = 0; r < 100; r++) {
+				st = new StringTokenizer(br.readLine());
+				for(int c = 0; c < 100; c++) {
+					int tmp = Integer.parseInt(st.nextToken());
+					row[r] += tmp;
+					col[c] += tmp;
+					if(r == c) {
+						dia[0] += tmp;
+					}
+					if(r+c == 99) {
+						dia[1] += tmp;
+					}
+				}
+			}
+			Arrays.sort(row);
+			Arrays.sort(col);
+			Arrays.sort(dia);
+			int maxRow = row[99];
+			int maxCol = col[99];
+			int maxDia = dia[1];
+			
+			int answer = Math.max(maxRow, maxCol);
+			answer = Math.max(answer, maxDia);
+			bw.write("#" + tc + " " + answer);
+			bw.newLine();
+		}
+		bw.flush();
+		bw.close();
+		br.close();
+	}
+}

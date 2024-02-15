@@ -1,27 +1,56 @@
-# 1219. 길찾기 <D4>
+// [SWEA] 01219. 길찾기
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
 
-from collections import deque
-
-
-def bfs(x, y):
-    dq = deque()
-    for g in graph[x]:
-        dq.append(g)
-    while dq:
-        gg = dq.popleft()
-        if gg == y:
-            break
-        for g in graph[gg]:
-            dq.append(g)
-    else:
-        return 0
-    return 1
-
-
-for t in range(1, 10 + 1):
-    tc, n = map(int, input().split())
-    tmp = list(map(int, input().split()))
-    graph = [[] for _ in range(100)]
-    for i in range(0, len(tmp), 2):
-        graph[tmp[i]].append(tmp[i+1])
-    print(f'#{t} {bfs(0, 99)}')
+public class Solution {
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+	static StringTokenizer st;
+	static int[][] arr;
+	static boolean[] visited;
+	public static void main(String[] args) throws IOException {
+		for(int tc = 1; tc <= 10; tc++) {
+			visited = new boolean[100];
+			arr = new int[100][2];
+			br.readLine();
+			st = new StringTokenizer(br.readLine());
+			while(st.hasMoreTokens()) {
+				int a = Integer.parseInt(st.nextToken());
+				int b = Integer.parseInt(st.nextToken());
+				if(arr[a][0] != 0) {
+					arr[a][1] = b;
+				} else {
+					arr[a][0] = b;
+				}
+			}
+			visited[0] = true;
+			dfs(0);
+			if(visited[99]) {
+				bw.write("#" + tc + " 1\n");
+			} else {
+				bw.write("#" + tc + " 0\n");
+			}
+		}
+		bw.flush();
+		bw.close();
+		br.close();
+	}
+	
+	static void dfs(int v) {
+		int a = arr[v][0];
+		int b = arr[v][1];
+		if(a != 0 && !visited[a]) {
+			visited[a] = true;
+			dfs(a);
+		}
+		if(b != 0 && !visited[b]) {
+			visited[b] = true;
+			dfs(b);
+		}
+		return;
+	}
+}

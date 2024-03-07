@@ -1,14 +1,13 @@
 // 02531. [S1] 회전 초밥.
 import java.io.*;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayDeque;
 import java.util.StringTokenizer;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringTokenizer st;
-    static Queue<Integer> mainQ, subQ;
+    static ArrayDeque<Integer> mainQ, subQ;
 
     static int N, d, k, c, answer, count;
 
@@ -19,8 +18,8 @@ public class Main {
         k = Integer.parseInt(st.nextToken());
         c = Integer.parseInt(st.nextToken());
         int[] sushiType = new int[d+1];
-        mainQ = new LinkedList<>();
-        subQ = new LinkedList<>();
+        mainQ = new ArrayDeque<>();
+        subQ = new ArrayDeque<>();
         count = 0;
         answer = 0;
         for(int i = 1; i <= k; i++) {

@@ -37,6 +37,7 @@ public class Main {
      right = L;
      
      while (left <= right) {
+    	 boolean flag = true;
     	 cnt = 0;
     	 mid = (left + right) / 2;
     	 for (int n = 0; n < N+1; n++) {
@@ -45,14 +46,16 @@ public class Main {
     			 tmp = 0;
     		 }
     		 cnt += tmp;
-    		 
+    		 if (cnt > M) {
+    			 left = mid + 1;
+    			 flag = false;
+    			 break;
+    		 }
     		 
     	 }
-    	 if (cnt > M) {
-			 left = mid + 1;
-			 continue;
-		 }
-    	 right = mid - 1;
+    	 if (flag) {
+    		 right = mid - 1;
+    	 }
      }
      bw.write(String.valueOf(left));
      bw.flush();

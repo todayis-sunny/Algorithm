@@ -1,31 +1,31 @@
-# 7465. 창용 마을 무리의 개수 <D4>
-
+# 7465. [diff_4] 창용 마을 무리의 개수
 from collections import deque
 
-for t in range(1, int(input()) + 1):
+
+def bfs():
+    global answer
+    dq = deque()
+    for target in range(1, N+1):
+        if not visited[target]:
+            answer += 1
+            dq.append(target)
+            visited[target] = True
+            while dq:
+                node = dq.popleft()
+                for nd in arr[node]:
+                    if not visited[nd]:
+                        visited[nd] = True
+                        dq.append(nd)
+
+
+for tc in range(1, int(input()) + 1):
     N, M = map(int, input().split())
     arr = [[] for _ in range(N+1)]
-    for m in range(M):
+    visited = [False] * (N+1)
+    answer = 0
+    for _ in range(M):
         a, b = map(int, input().split())
         arr[a].append(b)
         arr[b].append(a)
-
-    memo = [False] * (N + 1)
-    memo[0] = True
-
-    answer = 0
-    dq = deque([])
-    for i in range(N+1):
-        if memo[i]:
-            continue
-        else:
-            dq.append(i)
-            memo[i] = True
-            answer += 1
-            while dq:
-                number = dq.popleft()
-                for num in arr[number]:
-                    if not memo[num]:
-                        dq.append(num)
-                        memo[num] = True
-    print(f"#{t} {answer}")
+    bfs()
+    print(f"#{tc} {answer}")

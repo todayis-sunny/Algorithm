@@ -2,21 +2,6 @@
 import heapq
 
 
-def find(x):
-    if x != parent[x]:
-        parent[x] = find(parent[x])
-    return parent[x]
-
-
-def union(a, b):
-    a = find(a)
-    b = find(b)
-    if a < b:
-        parent[b] = a
-    else:
-        parent[a] = b
-
-
 def getCost(x1, y1, x2, y2):
     return abs(x2-x1) ** 2 + abs(y2-y1) ** 2
 
@@ -24,27 +9,27 @@ def getCost(x1, y1, x2, y2):
 for tc in range(1, int(input()) + 1):
     N = int(input())
     arr = []
-    parent = []
+    visited = [False] * N
     X = list(map(int, input().split()))
     Y = list(map(int, input().split()))
-    for i in range(N):
-        parent.append(i)
     E = float(input())
     q = []
     answer = 0
-    for i in range(0, N):
-        for j in range(i + 1, N):
-            cost = getCost(X[i], Y[i], X[j], Y[j])
-            heapq.heappush(q, (cost, i, j))
+    heapq.heappush(q, (0, 0))
+    count = N
+    while count > 0:
+        node = heapq.heappop(q)
+        if visited[node[1]]:
+            continue
+        visited[node[1]] = True
+        answer += node[0]
+        count -= 1
+        for i in range(N):
+            if visited[i]:
+                continue
+            cost = getCost(X[node[1]], Y[node[1]], X[i], Y[i])
+            heapq.heappush(q, (cost, i))
 
-    for _ in range(len(q)):
-        data = heapq.heappop(q)
-        cost = data[0]
-        a = data[1]
-        b = data[2]
-        if find(a) != find(b):
-            union(a, b)
-            answer += cost
     answer *= E
 
     print(f"#{tc} {round(answer)}")

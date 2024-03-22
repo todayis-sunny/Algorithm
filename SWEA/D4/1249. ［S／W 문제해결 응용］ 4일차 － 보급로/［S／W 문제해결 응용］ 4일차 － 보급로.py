@@ -1,34 +1,30 @@
-# 1249. 보급로 <D4>
-
+# 1249. [diff_4] 보급로.
 from collections import deque
+
+dx = [1, -1, 0, 0]
+dy = [0, 0, -1, 1]
 
 
 def bfs():
-    dq = deque()
-    keys = [[1e9] * n for _ in range(n)]
-    keys[0][0] = 0
-    dq.append((0, 0))
-    while dq:
-        x, y = dq.popleft()
+    queue = deque()
+    queue.append((0, 0))
+    visited[0][0] = 0
+    while queue:
+        (x, y) = queue.popleft()
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
-            # 범위에 해당하는 경우
-            if 0 <= nx < n and 0 <= ny < n:
-                if keys[x][y] + maps[nx][ny] < keys[nx][ny]:
-                    keys[nx][ny] = keys[x][y] + maps[nx][ny]
-                    dq.append((nx, ny))
+            if not (0 <= nx < N and 0 <= ny < N):
+                continue
+            if visited[nx][ny] <= visited[x][y] + arr[nx][ny]:
+                continue
+            queue.append((nx, ny))
+            visited[nx][ny] = visited[x][y] + arr[nx][ny]
 
-    return keys[-1][-1]
 
-
-dx = [-1, 1, 0, 0]
-dy = [0, 0, -1, 1]
-
-tc = int(input())
-
-for t in range(1, tc + 1):
-    n = int(input())
-    maps = [list(map(int, input())) for _ in range(n)]
-
-    print(f'#{t} {bfs()}')
+for tc in range(1, int(input()) + 1):
+    N = int(input())
+    arr = [list(map(int, input())) for _ in range(N)]
+    visited = [[1e9] * N for _ in range(N)]
+    bfs()
+    print(f"#{tc} {visited[N-1][N-1]}")

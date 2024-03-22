@@ -37,15 +37,16 @@ public class Main {
 		groups[students[left].group] += 1;
 		count = 1; 
 		while(left < N*M - 1 && right < N*M) {
-			min = students[left].ability;
-			max = students[right].ability;
-			diff = max - min;
+			
 			if (count < N) {
 				if (right == N*M - 1) {
 					break;
 				}
 				count = groups[students[++right].group]++ == 0 ? count + 1 : count;
 			} else {
+				min = students[left].ability;
+				max = students[right].ability;
+				diff = max - min;
 				count = groups[students[left++].group]-- == 1 ? count - 1 : count;
 				answer = Math.min(answer, diff);
 			}
@@ -60,7 +61,6 @@ public class Main {
     	int group;
     	int ability;
 		public Student(int group, int ability) {
-			super();
 			this.group = group;
 			this.ability = ability;
 		}

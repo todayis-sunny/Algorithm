@@ -64,16 +64,16 @@ public class Solution {
     				continue;
     			}
     			
-    			int delay = 0;
+    			int delay = 1;
 				if (pools[nx][ny] == 2) {
-					delay = (3 - visited[node.x][node.y] % 3) % 3;
+					delay += (3 - visited[node.x][node.y] % 3) % 3;
 				}
     			if (visited[nx][ny] != 0) {
-    				if (visited[nx][ny] <= visited[node.x][node.y] + delay + 1) {
+    				if (visited[nx][ny] <= visited[node.x][node.y] + delay) {
     					continue;
     				}
     			}
-    			visited[nx][ny] = visited[node.x][node.y] + delay + 1;
+    			visited[nx][ny] = visited[node.x][node.y] + delay;
     			queue.add(new Node(nx, ny));
     		}
     	}

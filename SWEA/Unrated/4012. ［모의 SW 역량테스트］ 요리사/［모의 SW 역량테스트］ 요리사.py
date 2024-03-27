@@ -8,15 +8,16 @@ def bitMaker(n, bits):
             answer = min(answer, value)
         return
     for i in range(N):
-        if bitmask[bits | (1 << i)] != 0:
+        newBits = bits | (1 << i)
+        if bitmask[newBits] != 0:
             continue
         if bits & (1 << i) == 0:  # 중복 되지 않는 새로운 식재료.
             value = 0
             for j in range(N):
                 if bits & (1 << j) != 0:  # 선택되지 않은 식재료는 무시.
                     value += synergy[i][j] + synergy[j][i]
-            bitmask[bits | (1 << i)] = bitmask[bits] + value
-            bitMaker(n+1, bits | (1 << i))
+            bitmask[newBits] = bitmask[bits] + value
+            bitMaker(n+1, newBits)
 
 
 for tc in range(1, int(input()) + 1):

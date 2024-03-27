@@ -31,7 +31,7 @@ for tc in range(1, int(input()) + 1):
     bitMaker(0, 0)
 
     answer = 1e9
-    for bit in range(len(bitmask)):
+    for bit in range((1 << halfN) - 1, len(bitmask)):
         if bin(bit)[2:].count('1') == halfN:
             bitFinder(bit)
 

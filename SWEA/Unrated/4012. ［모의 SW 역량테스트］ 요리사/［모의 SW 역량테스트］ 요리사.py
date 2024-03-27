@@ -1,7 +1,11 @@
 # 4012. 요리사
 
 def bitMaker(n, bits):
+    global answer
     if n == halfN:
+        if bitmask[((1 << N)-1) ^ bits] != 0:
+            value = abs(bitmask[bits] - bitmask[((1 << N) - 1) ^ bits])
+            answer = min(answer, value)
         return
     for i in range(N):
         if bitmask[bits | (1 << i)] != 0:
@@ -15,24 +19,12 @@ def bitMaker(n, bits):
             bitMaker(n+1, bits | (1 << i))
 
 
-def bitFinder(bits):
-    global answer
-    value = abs(bitmask[bits] - bitmask[((1 << N)-1) ^ bits])
-    answer = min(answer, value)
-    return
-
-
 for tc in range(1, int(input()) + 1):
     N = int(input())
     halfN = N//2
     synergy = [list(map(int, input().split())) for _ in range(N)]
     bitmask = [0] * (2**N - (2**(N//2) - 1))    # (2**N - 1 - (2**(N//2) - 1) + 1)
-
-    bitMaker(0, 0)
-
     answer = 1e9
-    for bit in range((1 << halfN) - 1, len(bitmask)):
-        if bin(bit)[2:].count('1') == halfN:
-            bitFinder(bit)
+    bitMaker(0, 0)
 
     print(f"#{tc} {answer}")

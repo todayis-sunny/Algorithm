@@ -23,18 +23,18 @@ def dfs(idx, medicine):
         return
 
     backup = film[idx]
+    # 약품 미투여
+    dfs(idx + 1, medicine)
+
     # 약품 0 투어
-    film[idx] = str(bin(1 << W))[3:]
+    film[idx] = "0" * W
     dfs(idx + 1, medicine + 1)
     film[idx] = backup
 
     # 약품 1 투여
-    film[idx] = str(bin((1 << W) - 1))[2:]
+    film[idx] = "1" * W
     dfs(idx + 1, medicine + 1)
     film[idx] = backup
-    # 약품 미투여
-    dfs(idx + 1, medicine)
-    #
     return
 
 

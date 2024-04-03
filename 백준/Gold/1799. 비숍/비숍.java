@@ -42,6 +42,9 @@ public class Main {
             answer = Math.max(answer, count);
             return;
         }
+        if (2*N- 1 - depth + count <= answer) {
+            return;
+        }
         boolean flag = false;
         for (int i = 0; i < N - Math.abs(depth - (N-1)); i++) {
             int x = N - 1 <= depth ? (N - 1) - i : depth - i;

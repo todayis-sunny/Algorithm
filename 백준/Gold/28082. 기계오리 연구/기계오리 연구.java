@@ -12,7 +12,7 @@ public class Main {
 	static StringTokenizer st;
 	static StringBuilder sb = new StringBuilder();
 	static int N, K, answer;
-	static final int MAX_POWER = 500*500;
+	static final int MAX_POWER = 500*100;
 	static int[] battery, power;
 	public static void main(String[] args) throws IOException {
 		answer = 0;

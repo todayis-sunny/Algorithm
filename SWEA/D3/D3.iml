@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/1225. ［S／W 문제해결 기본］ 7일차 － 암호생성기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1230. ［S／W 문제해결 기본］ 8일차 － 암호문3" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1234. ［S／W 문제해결 기본］ 10일차 － 비밀번호" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/3282. 0／1 Knapsack" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/3304. 최장 공통 부분 수열" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

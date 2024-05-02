@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/1952. ［모의 SW 역량테스트］ 수영장" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/2105. ［모의 SW 역량테스트］ 디저트 카페" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/4008. ［모의 SW 역량테스트］ 숫자 만들기" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

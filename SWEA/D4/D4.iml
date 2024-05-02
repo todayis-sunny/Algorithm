@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/1224. ［S／W 문제해결 기본］ 6일차 － 계산기3" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1226. ［S／W 문제해결 기본］ 7일차 － 미로1" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1231. ［S／W 문제해결 기본］ 9일차 － 중위순회" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1232. ［S／W 문제해결 기본］ 9일차 － 사칙연산" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1233. ［S／W 문제해결 기본］ 9일차 － 사칙연산 유효성 검사" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1238. ［S／W 문제해결 기본］ 10일차 － Contact" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1861. 정사각형 방" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/3000. 중간값 구하기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/4193. 수영대회 결승전 （ 완전 탐색 ＋ 구현 ）" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

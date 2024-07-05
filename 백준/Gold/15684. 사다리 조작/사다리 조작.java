@@ -22,17 +22,8 @@ public class Main {
             // 사다리 두기.
             ladders[a][b] = 1;
             ladders[a][b+1] = -1;
-//            // 사다리 갯수 증가.
-//            ladders[0][b] += 1;
-//            ladders[0][b+1] += 1;
         }
 
-//        for (int i = 1; i <= H; i++) {
-//            for (int j = 1; j <= N; j++) {
-//                System.out.print(ladders[i][j] + "");
-//            }
-//            System.out.println();
-//        }
         ans = -1;
         for (int l = 0; l <= 3; l++) {
             dfs(l, 0, 1, 1);
@@ -58,7 +49,7 @@ public class Main {
             return;
         }
         for (int i = x; i <= H ; i++) {
-            for (int j = y; j < N; j++) {
+            for (int j = 1; j < N; j++) {
                 if(valid(i, j)) {
                     install(true, i, j);
                     dfs(limit, depth+1, 1, 1);
@@ -69,16 +60,7 @@ public class Main {
     }
 
     public static boolean valid(int x, int y) {
-//        // 가로 사다리 갯수
-//        if (!(ladders[0][y] < H)) {
-//            return false;
-//        }
-        // 양옆의 사다리 유무
-//        if (y == 1) {
-//            return ladders[x][2] == 0;
-//        } else {
-            return ladders[x][y] == 0 && ladders[x][y + 1] == 0;
-//        }
+        return ladders[x][y] == 0 && ladders[x][y + 1] == 0;
     }
 
     public static void install(boolean key, int x, int y) {
@@ -86,13 +68,9 @@ public class Main {
         if (key) {
             ladders[x][y] = 1;
             ladders[x][y+1] = -1;
-//            ladders[0][y] += 1;
-//            ladders[0][y+1] += 1;
         } else {
             ladders[x][y] = 0;
             ladders[x][y+1] = 0;
-//            ladders[0][y] -= 1;
-//            ladders[0][y+1] -= 1;
         }
     }
 

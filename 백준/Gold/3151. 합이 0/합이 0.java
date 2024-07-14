@@ -8,7 +8,7 @@ public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringTokenizer st;
-    static int N, zeroCnt;
+    static int N;
     static long ans;
     static final int K = 10_000;
     static int[] memo = new int[20_001];
@@ -16,7 +16,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         N = Integer.parseInt(br.readLine());
-        zeroCnt = 0;
         ans = 0;
         st = new StringTokenizer(br.readLine());
         for (int n = 0; n < N; n++) {

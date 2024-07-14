@@ -54,7 +54,7 @@ public class Main {
                         break;
                     }
                     if (curr == a) {
-                        if(memo[a + K] >= 2) {
+                        if(ak >= 2) {
                             ans += combination(memo[a + K], 2) * memo[b + K];
                         }
                     } else if (a == b) {
@@ -63,7 +63,7 @@ public class Main {
                         }
                         break;
                     } else {
-                        ans += memo[curr + K] * memo[a + K] * memo[b + K];
+                        ans += ak * bk * ck;
                     }
                     left++;
                 }

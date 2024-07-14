@@ -43,9 +43,13 @@ public class Main {
                 } else if (tmp > 0) {
                     right--;
                 } else { // 0 이라면
+                    int ak = memo[a + K];
+                    int bk = memo[b + K];
+                    int ck = memo[curr + K];
                     if(curr == a && a == b) {
-                        if(memo[a + K] >= 3) {
-                            ans += combination(memo[a + K], 3);
+                        if(ak >= 3) {
+//                            ans += combination(ak, 3);
+                            ans += (ak * (ak - 1) * (ak - 2)) / 6;
                         }
                         break;
                     }

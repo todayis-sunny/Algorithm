@@ -1,6 +1,5 @@
 // 17090. [G3] 미로 탈출하기.
 import java.io.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -9,16 +8,14 @@ public class Main {
     static StringTokenizer st;
     static int N, M, ans;
     static char[][] maze;
-    static int[][] dp;
+    static int[][] dp; // 1 : 가능 | 0 : 초기값 | -1 : 불가능 | -2 : 현재 루프
     public static void main(String[] args) throws IOException {
+        ans = 0;
         st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         maze = new char[N][M];
         dp = new int[N][M];
-        for (int n = 0; n < N; n++) {
-            Arrays.fill(dp[n], -1);
-        }
 
         for (int n = 0; n < N; n++) {
             String input = br.readLine();
@@ -32,14 +29,8 @@ public class Main {
                 check(n, m);
             }
         }
-        ans = 0;
-        for (int n = 0; n < N; n++) {
-            for (int m = 0; m < M; m++) {
-                if(dp[n][m] == 1) {
-                    ans++;
-                }
-            }
-        }
+
+
         bw.write(String.valueOf(ans));
         bw.flush();
         bw.close();
@@ -47,14 +38,12 @@ public class Main {
     }
 
     static int check(int x, int y) {
-        if(x < 0 || x >= N || y < 0 || y >= M) {
+        if(x < 0 || x >= N || y < 0 || y >= M || dp[x][y] == 1) {
+            ans++;
             return 1;
         }
-        if(dp[x][y] == 1) {
-            return 1;
-        }
-        if(dp[x][y] == 0 || dp[x][y] == -2) {
-            return 0;
+        if(dp[x][y] == -1 || dp[x][y] == -2) {
+            return -1;
         }
         dp[x][y] = -2;
         char key = maze[x][y];

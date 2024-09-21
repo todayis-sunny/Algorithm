@@ -8,6 +8,7 @@ public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringTokenizer st;
+    static boolean[] visited;
     static int[] dx = new int[]{-1, 1, 0, 0};
     static int[] dy = new int[]{0, 0, -1, 1};
     static int N, M, ans;
@@ -19,6 +20,7 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         board = new char[N][M];
+        visited = new boolean[10000];
         for (int n = 0; n < N; n++) {
             String input = br.readLine();
             for (int m = 0; m < M; m++) {
@@ -49,40 +51,31 @@ public class Main {
         return blue.x == hall.x && blue.y == hall.y;
     }
     static Node move(int idx, Node node, Node stop) {
-//        System.out.println("Node : " + node.x + ":" + node.y);
-//        System.out.println("Stop : " + stop.x + ":" + stop.y);
 
         for (int i = 0; ; i++) {
             int nx = node.x + dx[idx]*i;
             int ny = node.y + dy[idx]*i;
-//            System.out.println("node x : " + node.x + "node y : " + node.y);
-//            System.out.println("nx : " + nx + " | ny : " + ny + " i : " + i);
-//            System.out.println(i + " | "+ nx + ":" + ny);
             if(board[nx][ny] == '#') { // 벽을 만나면 그 이전으로
                 nx -= dx[idx];
                 ny -= dy[idx];
 
-//                    System.out.println("벽 minus 1 nx : " + nx + " ny : " + ny);
-//                    System.out.println(node.x + " " + node.y + " " + idx + " " + i);
                 return new Node(nx, ny);
             } else if (board[nx][ny] == 'O') {
-//                    System.out.println("구멍 minus 1 nx : " + nx + " ny : " +ny);
-//                    System.out.println(node.x + " " + node.y + " " + idx + " " + i);
                 return new Node(nx, ny);
             } else if (nx == stop.x&& ny == stop.y) {
                 nx -= dx[idx];
                 ny -= dy[idx];
-//                    System.out.println("충돌충돌 minus 1 nx : " + nx + " ny : " +ny);
-//                    System.out.println(node.x + " " + node.y + " " + idx + " " + i);
                 return new Node(nx, ny);
             }
         }
     }
+    static int visit(Node red, Node blue) {
+        return red.x * 1000 + red.y * 100 + blue.x * 10 + blue.y;
+    }
     static void bfs() {
         Queue<Game> queue = new LinkedList<>();
         queue.offer(new Game(0, redBall, blueBall));
-//        System.out.println(redBall.x + " " + redBall.y);
-//        System.out.println(blueBall.x + " " + blueBall.y);
+        visited[visit(redBall, blueBall)] = true;
         while (!queue.isEmpty()) {
             Game curr = queue.poll();
 //            System.out.println(curr.cnt);
@@ -114,11 +107,8 @@ public class Main {
                     }
                 } else if (idx == 2) { // 좌
                     if(curr.red.y < curr.blue.y) {
-//                        System.out.println("좌로 이동중 :  0 :" + curr.red.x + " | " + curr.red.y + "|||"+ curr.blue.x + " | " + curr.blue.y );
                         nextRed = move(idx, curr.red, curr.blue);
-//                        System.out.println("좌로 이동중 :  1 :" + nextRed.x + " | " + nextRed.y + "|||"+ curr.blue.x + " | " + curr.blue.y );
                         nextBlue = move(idx, curr.blue, nextRed);
-//                        System.out.println("좌로 이동중 : 2 :" + nextRed.x + " | " + nextRed.y + "|||"+ nextBlue.x + " | " + nextBlue.y );
                     } else {
                         nextBlue = move(idx, curr.blue, curr.red);
                         nextRed = move(idx, curr.red, nextBlue);
@@ -132,8 +122,10 @@ public class Main {
                         nextRed = move(idx, curr.red, nextBlue);
                     }
                 }
-                if(curr.cnt <= 9) {
+                int visit = visit(nextRed, nextBlue);
+                if(curr.cnt <= 9 && !visited[visit]) {
                     queue.offer(new Game(curr.cnt + 1, nextRed, nextBlue));
+                    visited[visit] = true;
                 }
 
             }

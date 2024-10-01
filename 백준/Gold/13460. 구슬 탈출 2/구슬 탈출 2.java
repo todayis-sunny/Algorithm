@@ -9,8 +9,8 @@ public class Main {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringTokenizer st;
     static boolean[] visited;
-    static int[] dx = new int[]{-1, 1, 0, 0};
-    static int[] dy = new int[]{0, 0, -1, 1};
+    static byte[] dx = new byte[]{-1, 1, 0, 0};
+    static byte[] dy = new byte[]{0, 0, -1, 1};
     static int N, M, ans;
     static Node hall, redBall, blueBall;
     static char[][] board;
@@ -21,9 +21,9 @@ public class Main {
         M = Integer.parseInt(st.nextToken());
         board = new char[N][M];
         visited = new boolean[10000];
-        for (int n = 0; n < N; n++) {
+        for (byte n = 0; n < N; n++) {
             String input = br.readLine();
-            for (int m = 0; m < M; m++) {
+            for (byte m = 0; m < M; m++) {
                 char data = input.charAt(m);
                 if(data == 'B') {
                     blueBall = new Node(n, m);
@@ -50,11 +50,11 @@ public class Main {
     static boolean failure(Node blue) {
         return blue.x == hall.x && blue.y == hall.y;
     }
-    static Node move(int idx, Node node, Node stop) {
+    static Node move(byte idx, Node node, Node stop) {
 
-        for (int i = 0; ; i++) {
-            int nx = node.x + dx[idx]*i;
-            int ny = node.y + dy[idx]*i;
+        for (byte i = 0; ; i++) {
+            byte nx = (byte) (node.x + dx[idx]*i);
+            byte ny = (byte) (node.y + dy[idx]*i);
             if(board[nx][ny] == '#') { // 벽을 만나면 그 이전으로
                 nx -= dx[idx];
                 ny -= dy[idx];
@@ -74,11 +74,10 @@ public class Main {
     }
     static void bfs() {
         Queue<Game> queue = new LinkedList<>();
-        queue.offer(new Game(0, redBall, blueBall));
+        queue.offer(new Game((byte) 0, redBall, blueBall));
         visited[visit(redBall, blueBall)] = true;
         while (!queue.isEmpty()) {
             Game curr = queue.poll();
-//            System.out.println(curr.cnt);
             if(success(curr.red) && !failure(curr.blue)) {
                 ans = curr.cnt;
                 return;
@@ -86,7 +85,7 @@ public class Main {
             if (failure(curr.blue)) {
                 continue;
             }
-            for (int idx = 0; idx < 4; idx++) {
+            for (byte idx = 0; idx < 4; idx++) {
                 Node nextBlue;
                 Node nextRed;
                 if(idx == 0) { // 상
@@ -124,7 +123,7 @@ public class Main {
                 }
                 int visit = visit(nextRed, nextBlue);
                 if(curr.cnt <= 9 && !visited[visit]) {
-                    queue.offer(new Game(curr.cnt + 1, nextRed, nextBlue));
+                    queue.offer(new Game((byte) (curr.cnt + 1), nextRed, nextBlue));
                     visited[visit] = true;
                 }
 
@@ -132,18 +131,18 @@ public class Main {
         }
     }
     static class Node{
-        int x;
-        int y;
-        Node(int x, int y) {
+        byte x;
+        byte y;
+        Node(byte x, byte y) {
             this.x = x;
             this.y = y;
         }
     }
     static class Game{
-        int cnt;
+        byte cnt;
         Node red;
         Node blue;
-        Game(int cnt, Node red, Node blue) {
+        Game(byte cnt, Node red, Node blue) {
             this.cnt = cnt;
             this.red = red;
             this.blue = blue;

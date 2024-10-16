@@ -61,7 +61,7 @@ public class Main {
                 if(L < R) {
                     L++;
                 } else {
-                    R = ++L;
+                    break;
                 }
             } else {
                 R++;

@@ -2,12 +2,10 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.StringTokenizer;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    static StringTokenizer st;
     static int TC, N;
     static boolean flagAns;
     static ArrayList<String> addressBook;
@@ -29,16 +27,6 @@ public class Main {
                     flagAns = false;
                 }
             }
-            if (flagAns) {
-                for (int n = 0; n < N; n++) {
-                    String phoneNumber = addressBook.get(n);
-                    if(!trie.search(phoneNumber)) {
-                        flagAns = false;
-                        break;
-                    }
-                }
-            }
-
 
             if (flagAns) {
                 bw.write("YES");

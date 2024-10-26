@@ -9,7 +9,8 @@ public class Main {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringTokenizer st;
     static int N, W;
-    static int[][] dp, route;
+    static int[][] dp;
+    static boolean[][] route;
     static Node[] events;
 
     public static void main(String[] args) throws IOException {
@@ -17,7 +18,7 @@ public class Main {
         W = Integer.parseInt(br.readLine());
         events = new Node[W + 2];
         dp = new int[W + 2][W + 2];
-        route = new int[W + 2][W + 2];
+        route = new boolean[W + 2][W + 2]; // false : 경찰차1 | true : 경찰차2
         events[0] = new Node(1, 1);
         events[1] = new Node(N, N);
         for (int w = 0; w < W+2; w++) {
@@ -32,10 +33,11 @@ public class Main {
         int e1 = 0;
         int e2 = 1;
         for (int w = 2; w < W+2; w++) {
-            bw.write(route[e1][e2] + "\n");
-            if (route[e1][e2] == 1) {
+            if (!route[e1][e2]) {
+                bw.write("1\n");
                 e1 = w;
             } else {
+                bw.write("2\n");
                 e2 = w;
             }
         }
@@ -75,10 +77,9 @@ public class Main {
         int sol1 = solve(next, e2) + getDist(e1, next);
         int sol2 = solve(e1, next) + getDist(e2, next);
         if (sol1 < sol2) {
-            route[e1][e2] = 1;
             dp[e1][e2] = sol1;
         } else {
-            route[e1][e2] = 2;
+            route[e1][e2] = true;
             dp[e1][e2] = sol2;
         }
         return dp[e1][e2];

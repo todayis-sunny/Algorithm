@@ -42,8 +42,6 @@ public class Main {
             }
         }
         bw.flush();
-        bw.close();
-        br.close();
     }
 
     /**

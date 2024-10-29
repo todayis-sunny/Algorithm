@@ -1,2 +1,2 @@
-def solution(start, end_num):
-    return [num for num in range(start, end_num-1, -1)]
+def solution(start_num, end_num):
+    return [num for num in range(start_num, end_num-1, -1)]

@@ -10,14 +10,12 @@ public class Main {
     static int N, M;
     static int[][] dp; // dp[i][j] : 부품 i를 만들 때 필요한 기본 부품 j의 수
     static ArrayList<ArrayList<Component>> compList;
-    static boolean[] notBasic;
 
     public static void main(String[] args) throws IOException {
         N = Integer.parseInt(br.readLine());
         M = Integer.parseInt(br.readLine());
         dp = new int[N + 1][N + 1];
         compList = new ArrayList<>();
-        notBasic = new boolean[N + 1];
         for (int n = 0; n <= N; n++) {
             compList.add(new ArrayList<>());
         }
@@ -29,7 +27,6 @@ public class Main {
 
             compList.get(Y).add(new Component(X, K));
             dp[X][0]++;
-            notBasic[X] = true;
         }
         Queue<Integer> queue = new LinkedList<>();
         // 진입 차수가 0인 기본 부품들 큐에 추가
@@ -51,11 +48,12 @@ public class Main {
                 dp[next][0]--;
                 if (dp[next][0] == 0) {
                     queue.offer(next);
+                    dp[next][0]--;
                 }
             }
         }
         for (int n = 1; n <= N; n++) {
-            if (!notBasic[n] && dp[N][n] > 0) {
+            if (dp[n][0] == 0 && dp[N][n] > 0) {
                 bw.write(n + " " + dp[N][n] + "\n");
             }
         }

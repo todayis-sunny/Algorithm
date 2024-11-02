@@ -13,20 +13,25 @@ public class Main {
             st = new StringTokenizer(br.readLine());
             int x = Integer.parseInt(st.nextToken());
             int y = Integer.parseInt(st.nextToken());
-            int xK = 0, yK = 0;
-            int cnt = 0;
-            while (x < y) {
-                x += ++xK;
-                cnt++;
-                if(x >= y) {
-                    break;
-                }
-                y += --yK;
-                cnt++;
-            }
-            bw.write(cnt + "\n");
+            bw.write(solution(x, y) + "\n");
         }
         bw.flush();
+    }
+
+    static boolean hasDecimalPart(double value) {
+        return value != (int) value;
+    }
+    static int solution(int x, int y) {
+        double doubleTypeSol = Math.sqrt((y-x));
+        int intTypeSol = (int) doubleTypeSol;
+        boolean hasDecimal = hasDecimalPart(doubleTypeSol);
+        if (!hasDecimal) {
+            return intTypeSol * 2 - 1;
+        }
+        if (y- x <= intTypeSol * intTypeSol + intTypeSol) {
+            return intTypeSol * 2;
+        }
+        return intTypeSol * 2 + 1;
     }
 
 }

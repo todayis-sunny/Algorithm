@@ -11,21 +11,15 @@ public class Main {
         TC = Integer.parseInt(br.readLine());
         for (int tc = 0; tc < TC; tc++) {
             st = new StringTokenizer(br.readLine());
-            int x = Integer.parseInt(st.nextToken());
-            int y = Integer.parseInt(st.nextToken());
-            bw.write(solution(x, y) + "\n");
+            bw.write(solution(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())) + "\n");
         }
         bw.flush();
     }
-
-    static boolean hasDecimalPart(double value) {
-        return value != (int) value;
-    }
+    
     static int solution(int x, int y) {
         double doubleTypeSol = Math.sqrt((y-x));
         int intTypeSol = (int) doubleTypeSol;
-        boolean hasDecimal = hasDecimalPart(doubleTypeSol);
-        if (!hasDecimal) {
+        if (doubleTypeSol == intTypeSol) {
             return intTypeSol * 2 - 1;
         }
         if (y- x <= intTypeSol * intTypeSol + intTypeSol) {

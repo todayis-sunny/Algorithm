@@ -38,7 +38,7 @@ public class Main {
             adj.get(x).add(y); // x -> y;
             adj.get(y).add(x); // y -> x;
         }
-        dfs(1, 1); // depth 구하기.
+        dfs(1, 0); // depth 구하기.
         fillParent(); // parent 초기화.
         M = Integer.parseInt(br.readLine());
         for (int m = 0; m < M; m++) {

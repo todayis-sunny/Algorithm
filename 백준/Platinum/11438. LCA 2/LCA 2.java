@@ -1,21 +1,22 @@
 // 11438. [P5] LCA2.
+
 import java.io.*;
 import java.util.*;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    static StringBuffer sb = new StringBuffer();
     static StringTokenizer st;
+    static int limit;
     static int N, M;
-    static int[][] pT; // i, j -? i의 2^j번째 조상
+    static int[][] parent; // j, i -> j의 2^i번째 조상
     static int[] depth; // 깊이
-    static int[] parent; // 조상
-    static ArrayList<ArrayList<Integer>> adj; // 인접 리스트
+    static List<List<Integer>> adj = new ArrayList<>(); // 인접 리스트
     static boolean[] visited; // 방문 처리
 
     public static void main(String[] args) throws IOException {
         input();
-        bw.flush();
+        System.out.println(sb.toString());
     }
 
 
@@ -23,40 +24,33 @@ public class Main {
         N = Integer.parseInt(br.readLine());
         visited = new boolean[N + 1];
         depth = new int[N + 1];
-        pT = new int[N + 1][18];
-        adj = new ArrayList<>();
+        limit = (int) log2(N);
+        parent = new int[N + 1][limit + 1];
         // 인접 리스트 초기화 0번도 있어서 N+1
         for (int n = 0; n <= N; n++) {
             adj.add(new ArrayList<>());
         }
         // 입력 받기
-        for (int n = 0; n < N-1; n++) {
+        for (int n = 0; n < N - 1; n++) {
             st = new StringTokenizer(br.readLine());
             int x = Integer.parseInt(st.nextToken());
             int y = Integer.parseInt(st.nextToken());
             adj.get(x).add(y); // x -> y;
             adj.get(y).add(x); // y -> x;
         }
-        bfs(1); // depth 구하기.
-        for (int j = 1; (1 << j) < N; j++) {
-            for (int i = 1; i <= N; i++) {
-                if (pT[i][j - 1] == 0) {
-                    continue;
-                }
-                pT[i][j] = pT[pT[i][j - 1]][j - 1];
-            }
-        }
-
+        dfs(1, 1); // depth 구하기.
+        fillParent(); // parent 초기화.
         M = Integer.parseInt(br.readLine());
         for (int m = 0; m < M; m++) {
             st = new StringTokenizer(br.readLine());
             int ans = lca(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
-            bw.write(ans + "\n");
+            sb.append(ans).append("\n");
         }
     }
 
     /**
      * 밑이 e가 아닌 2 로그 함수
+     *
      * @param diff 진수
      * @return 리턴값
      */
@@ -64,22 +58,22 @@ public class Main {
         return Math.log(diff) / Math.log(2);
     }
 
-    static void bfs(int x) {
-        visited[x] = true;
+    static void dfs(int node, int d) {
+        depth[node] = d;
+        visited[node] = true;
+        List<Integer> children = adj.get(node);
+        for (Integer child : children) {
+            if (!visited[child]) {
+                parent[child][0] = node;
+                dfs(child, d + 1);
+            }
+        }
+    }
 
-        Queue<Integer> queue = new LinkedList<>();
-        queue.offer(1);
-        while (!queue.isEmpty()) {
-            int curr = queue.poll();
-            for (int i = 0; i < adj.get(curr).size(); i++) {
-                int next = adj.get(curr).get(i); // 부모 curr의 i번째 자식
-                if (visited[next]) { // 방문 했으면 무시
-                    continue;
-                }
-                visited[next] = true; // 방문 처리
-                depth[next] = depth[curr] + 1; // 부모의 깊이 + 1
-                pT[next][0] = curr; // 조상 저장.
-                queue.offer(next); // 자식을 넣어줌
+    static void fillParent() {
+        for (int i = 1; i <= limit; i++) {
+            for (int j = 1; j <= N; j++) {
+                parent[j][i] = parent[parent[j][i - 1]][i - 1];
             }
         }
     }
@@ -90,26 +84,23 @@ public class Main {
             x = y;
             y = z;
         }
-
-        while (true) {
-            int diff = depth[x] - depth[y];
-            if (diff == 0) {
-                break;
+        int diff = depth[x] - depth[y];
+        for (int i = 0; diff > 0; i++, diff = diff >> 1) {
+            if ((diff & 1) == 1) {
+                x = parent[x][i];
             }
-            int j = (int) log2(diff);
-            x = pT[x][j];
         }
         if (x == y) {
             return x;
         }
         // 조상을 함께 올라감
-        for (int i = 17; i >= 0; i--) {
-            if (pT[x][i] != pT[y][i]) { // 달라지면 그 조상을 탐색
-                x = pT[x][i];
-                y = pT[y][i];
+        for (int i = limit; i >= 0; i--) {
+            if (parent[x][i] != parent[y][i]) { // 달라지면 그 조상을 탐색
+                x = parent[x][i];
+                y = parent[y][i];
             }
         }
-        return pT[x][0];
+        return parent[x][0];
     }
 
 }

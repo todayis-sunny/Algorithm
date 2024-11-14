@@ -7,7 +7,6 @@ public class Main {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringTokenizer st;
     static Queue<Integer> queue = new LinkedList<>();
-    static PriorityQueue<Building> pq;
     static int[][] arr; // [x][0] : 진입 차수, [x][1] : 건물 건설 시간, , [x][2] : 건물 건설 완료 시간
     static List<List<Integer>> data = new ArrayList<>();
     static int N, buildTime = 1, completeTime = 2;
@@ -38,7 +37,7 @@ public class Main {
         }
         bw.flush();
     }
-    
+
     static void input() throws IOException {
         N = Integer.parseInt(br.readLine());
         arr = new int[N+1][3];
@@ -57,16 +56,6 @@ public class Main {
                 arr[n][0]++; // 진입차수 증가
                 data.get(key).add(n); // 필요한 건물에 진입차수를 감소시키므로 체크
             }
-        }
-    }
-
-    static class Building {
-        int number;
-        int time;
-
-        Building(int number, int time) {
-            this.number = number;
-            this.time = time;
         }
     }
 }

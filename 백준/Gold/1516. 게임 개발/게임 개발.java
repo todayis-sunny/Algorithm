@@ -1,16 +1,15 @@
 // 01516. [G3] 게임 개발.
 import java.io.*;
-import java.util.Comparator;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringTokenizer st;
     static PriorityQueue<Building> pq;
-    static int[][] arr; // [x][0] : 진입 차수, [x][N+1] : 건물 건설 시간, [x][N+2] : 건물 건설 완료 시간
-    static int N, buildTime, completeTime;
+    static int[][] arr; // [x][0] : 진입 차수, [x][1] : 건물 건설 시간, , [x][2] : 건물 건설 완료 시간
+    static List<List<Integer>> data = new ArrayList<>();
+    static int N, buildTime = 1, completeTime = 2;
 
     public static void main(String[] args) throws IOException {
         input();
@@ -23,12 +22,11 @@ public class Main {
         while (!pq.isEmpty()) {
             Building building = pq.poll();
             arr[building.number][completeTime] = building.time; // 완료 시간 기입
-            for (int n = 1; n <= N; n++) { // N개의 건물 탐색
-                if (arr[building.number][n] == 0) { // 상위 건물 없으면
-                    continue;
-                }
-                if (--arr[n][0] == 0) { // 진입차수가 0이 되면 건물 넣기
-                    pq.offer(new Building(n, building.time + arr[n][buildTime]));
+            List<Integer> curr = data.get(building.number);
+            for (int i = 0; i < curr.size(); i++) {
+                int next = curr.get(i);
+                if (--arr[next][0] == 0) {
+                    pq.offer(new Building(next, building.time + arr[next][buildTime]));
                 }
             }
         }
@@ -46,9 +44,10 @@ public class Main {
      */
     static void input() throws IOException {
         N = Integer.parseInt(br.readLine());
-        buildTime = N + 1;
-        completeTime = N + 2;
-        arr = new int[N+1][N+3];
+        arr = new int[N+1][3];
+        for (int n = 0; n <= N; n++) {
+            data.add(new ArrayList<>());
+        }
         for (int n = 1; n <= N; n++) { // n번째 건물
             st = new StringTokenizer(br.readLine());
             int num = Integer.parseInt(st.nextToken());
@@ -59,7 +58,7 @@ public class Main {
                     break;
                 }
                 arr[n][0]++; // 진입차수 증가
-                arr[key][n]++; // 필요한 건물에 진입차수를 감소시키므로 체크
+                data.get(key).add(n); // 필요한 건물에 진입차수를 감소시키므로 체크
             }
         }
         pq = new PriorityQueue<>(Comparator.comparing(Building::getTime));

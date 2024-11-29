@@ -15,7 +15,6 @@ public class Main {
 
         for (int n = 1; n < N+1; n++) {
             st = new StringTokenizer(br.readLine());
-
             int T = Integer.parseInt(st.nextToken());
             int P = Integer.parseInt(st.nextToken());
 
@@ -33,6 +32,7 @@ public class Main {
                 dp[next] = Math.max(dp[next], maximunm + arr[i][1]);
             }
         }
+        
         bw.write(String.valueOf(dp[N+1]));
         bw.flush();
         bw.close();

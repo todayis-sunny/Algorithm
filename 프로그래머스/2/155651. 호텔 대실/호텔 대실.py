@@ -9,13 +9,17 @@ def solution(book_time):
     
     heap = []
     for s, e in book_time_ref:
+        
         if not heap:
             heappush(heap,e+10)
             continue
+            
         if heap[0] <= s:
             heappop(heap)
+            
         else:
             answer += 1
+            
         heappush(heap,e+10)
     
     return answer

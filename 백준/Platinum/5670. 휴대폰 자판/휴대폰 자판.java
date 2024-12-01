@@ -20,11 +20,8 @@ public class Main {
     static void input() throws IOException {
         String str;
         while ((str = br.readLine()) != null) {
-            if (str.isEmpty()) {
-                break;
-            }
             N = Integer.parseInt(str);
-            List<String> list = new ArrayList<String>();
+            List<String> list = new ArrayList<>();
             trie = new Tire();
             double ans = 0.0;
             for (int n = 0; n < N; n++) {

@@ -1,6 +1,7 @@
 def solution(s, skip, index):
     answer = ""
     alpha = "abcdefghijklmnopqrstuvwxyz" 
+    
     for ch in skip:
         if ch in alpha:
             alpha = alpha.replace(ch, "")

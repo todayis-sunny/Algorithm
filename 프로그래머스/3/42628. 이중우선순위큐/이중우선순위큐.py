@@ -1,6 +1,7 @@
 from heapq import heapify, heappush, heappop
 
 def solution(operations):
+    # 정답 배열, 우선순위큐 배열
     answer = []
     hq = []
     

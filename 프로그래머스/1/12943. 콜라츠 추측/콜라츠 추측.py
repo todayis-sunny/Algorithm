@@ -11,4 +11,5 @@ def solution(num):
         answer += 1
         if answer == 500:
             return -1
+        
     return answer

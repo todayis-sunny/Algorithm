@@ -13,5 +13,4 @@ def solution(k, tangerine):
         if cnt <= 0:
             ans = i+1
             break
-            
     return ans

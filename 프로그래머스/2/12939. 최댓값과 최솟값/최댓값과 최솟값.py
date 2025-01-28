@@ -1,5 +1,6 @@
 def solution(s):
     arr = s.split()
+    # 최대값, 최솟값
     maxN = int(arr[0])
     minN = int(arr[0])
     for a in arr:

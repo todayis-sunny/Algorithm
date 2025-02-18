@@ -66,7 +66,10 @@ public class Main {
             this.state = state;
         }
     }
-    // 배양액을 뿌릴수 있는 땅 R+G개 선택 메서드
+
+    /**
+     * 배양액을 뿌릴수 있는 땅 R+G개 선택 메서드
+     */
     static void selectLand(int depth, int idx) {
         if (depth == LIMIT) {
             selectGreen(0, 0);
@@ -80,7 +83,10 @@ public class Main {
             selectedPossibleLands[i] = false;
         }
     }
-    // R+G개의 땅 중 R을 심을 땅 조합 메서드
+
+    /**
+     * R+G개의 땅 중 R을 심을 땅 조합 메서드
+     */
     static void selectGreen(int depth, int idx) {
         if (depth == G) {
             ans = Math.max(ans, bfs());
@@ -93,7 +99,10 @@ public class Main {
             selectedGreen[i] = false;
         }
     }
-    /** 메인로직: 배양액 퍼트려 만들수 있는 꽃의 개수 리턴 메서드 */
+
+    /**
+     * 메인로직: 배양액 퍼트려 만들수 있는 꽃의 개수 리턴 메서드
+     */
     static int bfs() {
         int[][] tmpGarden = copyGarden();
         int[][] time = new int[N][M];
@@ -167,9 +176,7 @@ public class Main {
     static int[][] copyGarden() {
         int[][] tmpGarden = new int[N][M];
         for (int n = 0; n < N; n++) {
-            for (int m = 0; m < M; m++) {
-                tmpGarden[n][m] = garden[n][m];
-            }
+            System.arraycopy(garden[n], 0, tmpGarden[n], 0, M);
         }
         return tmpGarden;
     }

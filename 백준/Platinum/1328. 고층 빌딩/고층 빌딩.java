@@ -27,21 +27,13 @@ public class Main {
 
     static void solve() {
         dp[1][1][1] = 1;
-        for (int n = 1; n < N; n++) {
+        for (int n = 2; n <= N; n++) {
             for (int l = 1; l <= n; l++) {
                 for (int r = 1; r <= n; r++) {
-                    if (dp[n][l][r] == 0) { // 경우의 수가 없으면 무시
-                        continue;
-                    }
                     // 가장 좌측에 높이 1인 빌딩 추가
-                    dp[n + 1][l + 1][r] += dp[n][l][r];
-                    dp[n + 1][l + 1][r] %= MOD;
                     // 가장 우측에 높이 1인 빌딩 추가
-                    dp[n + 1][l][r + 1] += dp[n][l][r];
-                    dp[n + 1][l][r + 1] %= MOD;
                     // 그 외에 높이 1인 빌딩 추가 (빌딩이 n+1개 일때, 높이 1인 빌딩이 보이지 않게 하려면 n-1개의 위치)
-                    dp[n + 1][l][r] += (dp[n][l][r] * (n - 1));
-                    dp[n + 1][l][r] %= MOD;
+                    dp[n][l][r] = (dp[n - 1][l - 1][r] + dp[n - 1][l][r - 1] + dp[n - 1][l][r] * (n - 2)) % MOD;
                 }
             }
         }

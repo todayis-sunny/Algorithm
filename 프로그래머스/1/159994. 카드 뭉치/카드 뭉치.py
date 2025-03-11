@@ -1,7 +1,7 @@
 from collections import deque
 
 def solution(cards1, cards2, goal):
-    answer = 'Yes'
+    answer = "Yes"
     
     cards1 = deque(cards1)
     cards2 = deque(cards2)
@@ -11,7 +11,7 @@ def solution(cards1, cards2, goal):
         elif (len(cards2) != 0) and (i == cards2[0]):
             cards2.popleft()
         else:
-            answer = 'No'
+            answer = "No"
             break
         
     return answer

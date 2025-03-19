@@ -10,7 +10,6 @@ def solution(s):
                 stack.append(letter)
                 
     if len(stack) == 0:
-        answer = 1
+        return 1
     else:
-        answer = 0
-    return answer
+        return 0

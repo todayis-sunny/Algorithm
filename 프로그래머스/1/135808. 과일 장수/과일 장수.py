@@ -1,5 +1,4 @@
 def solution(k, m, score):
-    
     if m > len(score):
         return 0
     answer = 0

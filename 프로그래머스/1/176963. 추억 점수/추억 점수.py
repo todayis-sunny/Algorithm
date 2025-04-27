@@ -1,10 +1,10 @@
 def solution(name, yearning, photo):
-    answer = []
+    ans = []
     for p in photo:
         score = 0
         for n in p:
             if n in name:
                 score += yearning[name.index(n)]
-        answer.append(score)
+        ans.append(score)
 
-    return answer
+    return ans

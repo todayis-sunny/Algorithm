@@ -1,6 +1,6 @@
 def solution(word):
     answer = 0
-    dic = ['A', 'E', 'I', 'O', 'U']
+    dic = ["A", "E", "I", "O", "U"]
     li = [5 ** i for i in range(len(dic))]
     
     for i in range(len(word) - 1, -1, -1):

@@ -1,5 +1,5 @@
 def solution(number, limit, power):
-    answer = 0
+    ans = 0
     
     for i in range(1, number+1):
         temp = 0
@@ -12,6 +12,6 @@ def solution(number, limit, power):
             if temp > limit:
                 temp = power
                 break
-        answer += temp
+        ans += temp
         
-    return answer
+    return ans

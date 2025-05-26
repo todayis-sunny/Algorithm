@@ -1,5 +1,5 @@
 def solution(s, n):
-    answer = ''
+    answer = ""
     for i in s:
         if i == " ":
             answer += " "

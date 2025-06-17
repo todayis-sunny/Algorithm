@@ -1,10 +1,10 @@
 def solution(s):
-    for answer in range(len(s), 0, -1):
+    for a in range(len(s), 0, -1):
         start = 0
-        end = answer -1
+        end = a -1
         while end < len(s):
             if isPalindrome(s, start, end):
-                return answer
+                return a
             start += 1
             end += 1
     return 1   

@@ -2,9 +2,9 @@ def solution(s, skip, index):
     answer = ""
     alpha = "abcdefghijklmnopqrstuvwxyz" 
     
-    for ch in skip:
-        if ch in alpha:
-            alpha = alpha.replace(ch, "")
+    for pwd in skip:
+        if pwd in alpha:
+            alpha = alpha.replace(pwd, "")
     
     for i in s:
         change = alpha[(alpha.index(i) + index) % len(alpha)]

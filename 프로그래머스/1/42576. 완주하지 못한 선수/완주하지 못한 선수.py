@@ -1,16 +1,16 @@
 def solution(participant, completion):
     dic = dict()
-    for data in participant:
-        if data not in dic:
-            dic[data] = 1
+    for p in participant:
+        if p not in dic:
+            dic[p] = 1
         else:
-            dic[data] += 1
+            dic[p] += 1
     
-    for data in completion:
-        if dic[data] == 1:
-            del dic[data]
+    for c in completion:
+        if dic[c] == 1:
+            del dic[c]
         else:
-            dic[data] -= 1
+            dic[c] -= 1
             
     
     return list(dic)[0]

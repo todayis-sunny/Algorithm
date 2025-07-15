@@ -88,7 +88,6 @@ public class Main {
                 }
                 ans = Math.min(ans, result); // 정답을 갱신
                 right = mid - 1; // 모든 차량이 주차가 완료되었으니 시간을 더 좁혀봄
-                continue loop;
             } else { // 차가 전부 주차되지 않았다면
                 left = mid + 1; // 모든 차량이 주차가 완료되지 않았으니 시간을 더 늘려봄
             }

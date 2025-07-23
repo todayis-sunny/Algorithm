@@ -5,10 +5,10 @@ def solution(people, limit):
     people = sorted(people)
     dq = deque(people)
     while dq:
-        esc_L = dq.popleft()
+        escL = dq.popleft()
         while dq:
-            esc_R = dq.pop()
-            if esc_R > (limit - esc_L):
+            escR = dq.pop()
+            if escR > (limit - escL):
                 ans += 1
             else:
                 break

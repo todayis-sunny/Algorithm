@@ -3,7 +3,7 @@ def solution(n, m, section):
     ans = 0
     for s in section:
         if curr < s:
-            curr = s + m - 1
+            curr = s + (m - 1)
             ans += 1
         else:
             continue

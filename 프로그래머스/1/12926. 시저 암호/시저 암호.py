@@ -1,11 +1,11 @@
 def solution(s, n):
-    answer = ''
+    ams = ""
     for i in s:
         if i == " ":
-            answer += " "
+            ams += " "
         else:
             k = chr(ord(i) + n)
             if k.isupper() != i.isupper() or not k.isalpha():
                 k = chr(ord(k) - 26)
-            answer += k
-    return answer
+            ams += k
+    return ams

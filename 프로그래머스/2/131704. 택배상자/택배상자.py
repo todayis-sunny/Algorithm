@@ -1,12 +1,12 @@
 def solution(order):
     ans = 0
     stack = []
-    max_box = 0
+    maxBox = 0
     for box in order:
-        if max_box < box:
-            for b in range(max_box+1, box):
+        if maxBox < box:
+            for b in range(maxBox + 1, box):
                 stack.append(b)
-            max_box = box
+            maxBox = box
             ans += 1
         elif stack and stack[-1] == box:
             stack.pop()

@@ -1,15 +1,15 @@
 def solution(numbers, hand):
     keypad = [(3,1), (0,0), (0,1), (0,2), (1,0), (1,1), (1,2), (2,0), (2,1), (2,2), (3,0), (3, 2)]
     L, R = 10, 11
-    answer = ''
+    ans = ''
     
     for num in numbers:
         if num in [1, 4, 7]:
             L = num
-            answer += 'L'
+            ans += 'L'
         elif num in [3, 6, 9]:
             R = num
-            answer += 'R'
+            ans += 'R'
         else:
             midRow = keypad[num][0]
             midCol = keypad[num][1]
@@ -24,17 +24,17 @@ def solution(numbers, hand):
             Rdist = abs(midRow - RRow) + abs(midCol - RCol)
             if Ldist < Rdist:
                 L = num
-                answer += 'L'
+                ans += 'L'
             elif Ldist > Rdist:
                 R = num
-                answer += 'R'
+                ans += 'R'
             else:
                 if hand == "left":
                     L = num
-                    answer += 'L'
+                    ans += 'L'
                 else:
                     R = num
-                    answer += 'R'
+                    ans += 'R'
                     
     
-    return answer
+    return ans

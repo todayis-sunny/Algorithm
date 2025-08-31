@@ -6,14 +6,14 @@ def solution(numbers):
             answer.append(n + 1)
         else:  # 홀수 인 경우
             temp = '0' + bin(n)[2:]
-            right_idx = temp.rfind('0')
-            temp_list = list(temp)
+            rIdx = temp.rfind('0')
+            tempList = list(temp)
             
-            temp_list[right_idx] = '1'
-            temp_list[right_idx+1] = '0'
+            tempList[rIdx] = '1'
+            tempList[rIdx + 1] = '0'
             
-            temp_str = "".join(temp_list)
+            tempStr = "".join(tempList)
             
-            answer.append(int(temp_str, 2))
+            answer.append(int(tempStr, 2))
                 
     return answer

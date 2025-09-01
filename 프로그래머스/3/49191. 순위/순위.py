@@ -1,5 +1,5 @@
 def solution(n, results):
-    answer = 0
+    ans = 0
     board = [[0]*n for _ in range(n)]
     
     for a,b in results:
@@ -16,5 +16,5 @@ def solution(n, results):
                     board[j][i] = board[k][i] = board[j][k] = -1
     for row in board:
         if row.count(0) == 1:
-            answer += 1
-    return answer
+            ans += 1
+    return ans

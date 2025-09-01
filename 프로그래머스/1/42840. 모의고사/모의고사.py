@@ -1,22 +1,27 @@
 def solution(answers):
-    # 1번, 2번, 3번 수포자들
-    s1 = [1, 2, 3, 4, 5]
-    s2 = [2, 1, 2, 3, 2, 4, 2, 5]
-    s3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
-    
     answer = []
-    score = [0, 0, 0]
     
-    for i in range(len(answers)):
-        if answers[i] == s1[i % 5]:
-            score[0] += 1
-        if answers[i] == s2[i % 8]:
-            score[1] += 1
-        if answers[i] == s3[i % 10]:
-            score[2] += 1
+    length = len(answers)
     
-    for idx, num in enumerate(score):
-        if num == max(score):
-            answer.append(idx + 1)
-            
+    a = [1, 2, 3, 4, 5]
+    b = [2, 1, 2, 3, 2, 4, 2, 5]
+    c = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
+    
+    # a, b, c의 득점
+    scores = [0] * 3
+    
+    for i in range(length):
+        if (a[i % 5]) == answers[i]:
+            scores[0] += 1
+        if (b[i % 8]) == answers[i]:
+            scores[1] += 1
+        if (c[i % 10]) == answers[i]:
+            scores[2] += 1
+    
+    max_value = max(scores)
+    
+    for i in range(len(scores)):
+        if scores[i] == max_value:
+            answer.append(i + 1)
+    
     return answer

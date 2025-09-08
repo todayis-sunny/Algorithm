@@ -1,5 +1,5 @@
 def solution(data, col, row_begin, row_end):
-    answer = 0
+    ans = 0
     # 정렬
     data = sorted(data, key = lambda x: [x[col - 1], -x[0]])
     
@@ -9,6 +9,6 @@ def solution(data, col, row_begin, row_end):
         for j in data[i - 1]:
             total += (j % i)
         # mod 연산된 값의 합을 XOR연산
-        answer ^= total
+        ans ^= total
             
-    return answer
+    return ans

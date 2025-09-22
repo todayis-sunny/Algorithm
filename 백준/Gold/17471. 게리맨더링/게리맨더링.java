@@ -21,7 +21,7 @@ public class Main {
     static void input() throws IOException {
         N = Integer.parseInt(br.readLine());
         // 인구수 초기화
-        population = new int[N + 1];
+        population = new int[N + 1]; // 1-based
         st = new StringTokenizer(br.readLine());
         for (int i = 1; i <= N; i++) {
             population[i] = Integer.parseInt(st.nextToken());
@@ -39,9 +39,8 @@ public class Main {
             }
         }
     }
-
     static void solve() {
-        for (int bit = 1; bit < (1 << (N)); bit++) {
+        for (int bit = 1; bit < (1 << (N - 1)); bit++) {
             check(bit);
             if (ans == 0) return;
         }
@@ -61,12 +60,12 @@ public class Main {
             return;
         }
         int p0 = 0, p1 = 0;
-        for (int i = 0; i <= N; i++) {
+        for (int i = 0; i < N; i++) {
             int mask = (1 << i);
             if ((bit & mask) != 0) { // p0 인구수 증가
-                p0 += population[i];
+                p0 += population[i + 1];
             } else {
-                p1 += population[i]; // p1 인구수 증가
+                p1 += population[i + 1]; // p1 인구수 증가
             }
         }
         // 해당 인구수가 최적이 될수 없다면 종료
@@ -82,12 +81,12 @@ public class Main {
         boolean[] visited1 = new boolean[N + 1];
         visited0[0] = true;
         visited1[0] = true;
-        for (int i = 0; i <= N; i++) {
+        for (int i = 0; i < N; i++) {
             int mask = (1 << i);
             if ((bit & mask) != 0) { // 해당 도시는 1의 도시 이므로 0의 방문 여부에서는 방문 처리
-                visited0[i] = true;
+                visited0[i + 1] = true;
             } else {
-                visited1[i] = true; // 해당 도시는 0의 도시 이므로 1의 방문 여부에서는 방문 처리
+                visited1[i + 1] = true; // 해당 도시는 0의 도시 이므로 1의 방문 여부에서는 방문 처리
             }
         }
         return find(visited0) && find(visited1);

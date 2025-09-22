@@ -41,8 +41,9 @@ public class Main {
     }
 
     static void solve() {
-        for (int bit = 1; bit < (1 << N); bit++) {
+        for (int bit = 1; bit < (1 << (N)); bit++) {
             check(bit);
+            if (ans == 0) return;
         }
     }
 

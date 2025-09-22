@@ -7,7 +7,7 @@ public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringTokenizer st;
-    static int A, B, C;
+    static int[] limit = new int[3];
     static Set<Integer> set = new HashSet<>();
     // visited[b][c] : b용량, c용량 확인 여부
     static boolean[][] visited = new boolean[201][201];
@@ -21,13 +21,13 @@ public class Main {
     static void input() throws IOException {
         // 물통의 크기 입력
         st = new StringTokenizer(br.readLine());
-        A = Integer.parseInt(st.nextToken());
-        B = Integer.parseInt(st.nextToken());
-        C = Integer.parseInt(st.nextToken());
+        limit[0] = Integer.parseInt(st.nextToken());
+        limit[1] = Integer.parseInt(st.nextToken());
+        limit[2] = Integer.parseInt(st.nextToken());
     }
 
     static void solve() {
-        dfs(0, 0, C);
+        dfs(new int[]{0, 0, limit[2]});
     }
 
     static void output() throws IOException {
@@ -39,72 +39,39 @@ public class Main {
         bw.flush();
     }
 
-    static void dfs(int a, int b, int c) {
+    static void dfs(int[] state) {
         // 첫 번째 물통이 비어 있을 때, 세번 째 물통의 용량
-        if (a == 0) {
-            set.add(c);
+        if (state[0] == 0) {
+            set.add(state[2]);
         }
 
         // 부울수 있는 물의 양 : 한 물통이 빌때까지, 한 물통이 꽉찰때까지
-        int k;
-        // 새로운 각 물통의 양
-        int na, nb, nc;
-        // 첫 번째 물통을 사용
-        if (a != 0) {
-            // 두 번째 물통에 붓기
-            k = Math.min(a, B - b);
-            na = a - k;
-            nb = b + k;
-            if (!visited[nb][c]) {
-                visited[nb][c] = true;
-                dfs(na, nb, c);
-            }
-            // 세 번째 물통에 붓기
-            k = Math.min(a, C - c);
-            na = a - k;
-            nc = c + k;
-            if (!visited[b][nc]) {
-                visited[b][nc] = true;
-                dfs(na, b, nc);
-            }
-            // 세 번째 물통에 붓기
-        }
-        // 두 번째 물통을 사용
-        if (b != 0) {
-            // 첫 번째 물통에 붓기
-            k = Math.min(b, A - a);
-            na = a + k;
-            nb = b - k;
-            if (!visited[nb][c]) {
-                visited[nb][c] = true;
-                dfs(na, nb, c);
-            }
-            // 세 번째 물통에 붓기
-            k = Math.min(b, C - c);
-            nb = b - k;
-            nc = c + k;
-            if (!visited[nb][nc]) {
-                visited[nb][nc] = true;
-                dfs(a, nb, nc);
-            }
-        }
-        // 세 번째 물통을 사용
-        if (c != 0) {
-            // 첫 번째 물통에 붓기
-            k = Math.min(c, A - a);
-            na = a + k;
-            nc = c - k;
-            if (!visited[b][nc]) {
-                visited[b][nc] = true;
-                dfs(na, b, nc);
-            }
-            // 두 번째 물통에 붓기
-            k = Math.min(c, B - b);
-            nb = b + k;
-            nc = c - k;
-            if (!visited[nb][nc]) {
-                visited[nb][nc] = true;
-                dfs(a, nb, nc);
+        int possible;
+        for (int i = 0; i < 3; i++) {
+            // 물이 없으면 스킵
+            if (state[i] == 0) continue;
+            for (int j = 0; j < 3; j++) {
+                // 같은 물통을 가리키면 스킵
+                if (i == j) continue;
+                possible = Math.min(state[i], limit[j] - state[j]);
+                // 새로운 상태 만들기
+                int[] newState = new int[3];
+                for (int k = 0; k < 3; k++) {
+                    // 물 감소
+                    if (k == i) {
+                        newState[k] = state[k] - possible;
+                    }
+                    // 물 증가
+                    else if (k == j) {
+                        newState[k] = state[k] + possible;
+                    } else {
+                        newState[k] = state[k];
+                    }
+                }
+                if (!visited[newState[1]][newState[2]]) {
+                    visited[newState[1]][newState[2]] = true;
+                    dfs(newState);
+                }
             }
         }
     }

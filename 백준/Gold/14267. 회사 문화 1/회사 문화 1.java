@@ -9,6 +9,7 @@ public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringTokenizer st;
+    static StringBuilder sb = new StringBuilder();
     static int N, M; // N: 직원 수, M: 칭찬의 횟수
     static int[] parent;
     static int[] total; // 칭찬의 수치 합 1-based
@@ -48,8 +49,9 @@ public class Main {
 
     static void output() throws IOException {
         for (int i = 1; i <= N; i++) {
-            bw.write(total[i] + " ");
+            sb.append(total[i]).append(" ");
         }
+        bw.write(sb.toString());
         bw.flush();
     }
 }

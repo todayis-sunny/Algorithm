@@ -11,7 +11,7 @@ public class Main {
     static StringTokenizer st;
     static int N, M; // N: 직원 수, M: 칭찬의 횟수
     static int[] parent;
-    static long[] total; // 칭찬의 수치 합 1-based
+    static int[] total; // 칭찬의 수치 합 1-based
 
     public static void main(String[] args) throws IOException {
         input();
@@ -31,7 +31,7 @@ public class Main {
             parent[n] = Integer.parseInt(st.nextToken());
         }
         // 3. 칭찬 입력
-        total = new long[N + 1];
+        total = new int[N + 1];
         for (int m = 0; m < M; m++) {
             st = new StringTokenizer(br.readLine());
             int emp = Integer.parseInt(st.nextToken());
@@ -49,7 +49,7 @@ public class Main {
     static void output() throws IOException {
         for (int i = 1; i <= N; i++) {
             bw.write(total[i] + " ");
-            bw.flush();
         }
+        bw.flush();
     }
 }

@@ -1,19 +1,17 @@
-import heapq
-
 def solution(coin, cards):
     length = len(cards)
     goal = length + 1
-    freeIdx = length // 3 - 1
+    freeIdx = length //3 - 1
     
     idxArr = [0] * (length + 1)
     for i in range(length):
         idxArr[cards[i]] = i
         
-    hq = []
+    combi = [0, 0, 0]
     # 전처리
     for j in range(freeIdx + 1):
         if idxArr[goal - cards[j]] <= j:
-            heapq.heappush(hq, 0)
+            combi[0] += 1
     
     
     # 라운드
@@ -33,20 +31,24 @@ def solution(coin, cards):
         curr += 2
         # card1에 대한 처리.
         if freeIdx < idxArr[goal - card1] < idxArr[card1]:
-            heapq.heappush(hq, 2)
+            combi[2] += 1
         elif idxArr[goal - card1] <= freeIdx:
-            heapq.heappush(hq, 1)
+            combi[1] += 1
         # card2에 대한 처리. 
         if freeIdx < idxArr[goal - card2] < idxArr[card2]:
-            heapq.heappush(hq, 2)
+            combi[2] += 1
         elif idxArr[goal - card2] <= freeIdx:
-            heapq.heappush(hq, 1)
+            combi[1] += 1
         
-        # 뺄게 없으면 break
-        if not hq:
+        # 뺄게 있으면 계속 진행
+        for i in range(3):
+            if combi[i]:
+                coins -= i
+                combi[i] -= 1
+                break
+        # 뺄게 없으면 break    
+        else:
             break
-        cost = heapq.heappop(hq)
-        coins -= cost
         # coin이 부족해지면 break
         if coins < 0:
             break

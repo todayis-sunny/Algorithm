@@ -1,7 +1,7 @@
-from itertools import combinations
+from itertools import combinations as combi
 
 def solution(number):
-    arr = list(combinations(number, 3))
+    arr = list(combi(number, 3))
     ans = 0
     for e in arr:
         if sum(e) == 0:

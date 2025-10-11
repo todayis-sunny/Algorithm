@@ -8,7 +8,7 @@ def solution(genres, plays):
         gen[genres[i]] = gen.get(genres[i], []) + [(plays[i], i)]
 
 	# 재생 횟수 내림차순으로 장르별 정렬
-    genSort = sorted(total.items(), key=lambda x: x[1], reverse=True)
+    genSort = sorted(total.items(), key=lambda x: x[1], reverse = True)
 
 	# 재생 횟수 내림차순, 인덱스 오름차순 정렬
     for (genre, totalPlay) in genSort:

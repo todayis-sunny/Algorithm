@@ -9,4 +9,4 @@ def solution(n):
         result.append(str(k))
         n //= 3
         
-    return ''.join(result[::-1])
+    return "".join(result[::-1])

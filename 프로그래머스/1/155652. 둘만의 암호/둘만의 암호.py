@@ -1,5 +1,5 @@
 def solution(s, skip, index):
-    answer = ""
+    ans = ""
     alpha = "abcdefghijklmnopqrstuvwxyz" 
     
     for pwd in skip:
@@ -8,6 +8,6 @@ def solution(s, skip, index):
     
     for i in s:
         change = alpha[(alpha.index(i) + index) % len(alpha)]
-        answer += change
+        ans += change
     
-    return answer
+    return ans

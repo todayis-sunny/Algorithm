@@ -7,8 +7,8 @@ def solution(X, Y):
     elif list(nums) == ["0"]:
         return "0"
     
-    nums_order = sorted(list(nums), reverse = True)
+    numsOrder = sorted(list(nums), reverse = True)
     answer = ''
-    for num in nums_order:
+    for num in numsOrder:
         answer += num * nums[num]
     return answer

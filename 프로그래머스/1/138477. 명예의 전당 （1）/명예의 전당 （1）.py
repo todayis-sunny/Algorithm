@@ -1,5 +1,5 @@
 def solution(k, score):
-    answer = []
+    ans = []
     arr = []
     for i in score:
         if len(arr) < k:
@@ -8,5 +8,5 @@ def solution(k, score):
             if min(arr)<i:
                 arr.remove(min(arr))
                 arr.append(i)
-        answer.append(min(arr))
-    return answer
+        ans.append(min(arr))
+    return ans

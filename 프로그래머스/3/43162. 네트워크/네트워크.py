@@ -1,12 +1,12 @@
 def solution(n, computers):
-    answer = 0
+    ans = 0
     
     visited = [False] * n
     for com in range(n):
         if visited[com] == False:
             dfs(n, computers, com, visited)
-            answer += 1
-    return answer
+            ans += 1
+    return ans
 
 def dfs(n, computers, com, visited):
     visited[com] = True

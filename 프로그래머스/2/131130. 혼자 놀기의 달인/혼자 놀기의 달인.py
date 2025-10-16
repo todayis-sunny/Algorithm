@@ -18,9 +18,9 @@ def solution(cards):
         v[card] = 1
         dfs(card, 1)
     
-    answer = 0
+    ans = 0
     if len(stack) >= 2:
         stack.sort()
-        answer = stack[-1] * stack[-2]
+        ans = stack[-1] * stack[-2]
         
-    return answer
+    return ans

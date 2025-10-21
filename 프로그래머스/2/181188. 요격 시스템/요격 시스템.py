@@ -1,9 +1,9 @@
 def solution(targets):
-    ans = 0
+    result = 0
     targets.sort(key = lambda x: x[1])
     e = 0
-    for tg in targets:
-        if tg[0] >= e:
-            ans += 1
-            e = tg[1]
-    return ans
+    for target in targets:
+        if target[0] >= e:
+            result += 1
+            e = target[1]
+    return result

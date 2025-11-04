@@ -40,6 +40,8 @@ class Solution {
         }
         int parentValue = value / 10;
         result[id] += value - parentValue;
+        // 더 이상 나눌 가치가 없으면 종료
+        if (parentValue == 0) return;
         dfs(parent[id], parentValue);
     }
 }

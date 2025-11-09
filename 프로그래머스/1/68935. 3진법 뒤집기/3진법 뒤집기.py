@@ -8,7 +8,7 @@ def n_tran(k, q):
 
 def solution(n):
     temp = n_tran(n, 3)[::-1]
-    answer = 0
+    result = 0
     for i in range(len(temp)):
-        answer += int(temp[-(i+1)]) * 3 ** i
-    return answer
+        result += int(temp[-(i + 1)]) * 3 ** i
+    return result

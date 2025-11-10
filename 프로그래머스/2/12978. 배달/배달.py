@@ -1,8 +1,8 @@
 from heapq import heappop, heappush
 
+INF = 1e9
 def solution(N, road, K):
-    INF = 1e9
-    answer = 0
+    result = 0
     distance = [INF] * (N + 1)
     graph = [[] for _ in range(N + 1)]
     for a,b,c in road:
@@ -26,6 +26,6 @@ def solution(N, road, K):
             
     for d in distance[1:]:
         if d <= K:
-            answer += 1
+            result += 1
     
-    return answer
+    return result

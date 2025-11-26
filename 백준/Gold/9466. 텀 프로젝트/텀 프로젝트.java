@@ -11,6 +11,7 @@ public class Main {
     static int TC, N, cnt;
     static int[] wanted; // 1-based
     static boolean[] visited, finished;
+
     public static void main(String[] args) throws IOException {
         input();
         output();
@@ -44,9 +45,8 @@ public class Main {
         bw.write(sb.toString());
         bw.flush();
     }
-    static void dfs(int curr) {
-        if (visited[curr]) return;
 
+    static void dfs(int curr) {
         visited[curr] = true;
         int next = wanted[curr];
         // 학생이 탐색되지 않은 경우

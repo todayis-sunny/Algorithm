@@ -37,6 +37,7 @@ public class Main {
         for (int i = 1; i <= N; i++) {
             prev = building[i - 1] + result[i - 1];
             long increment = (prev + 1) - building[i];
+            // 증감이 0이면 스킵
             if (increment == 0) continue;
             // (짝 인덱스, 짝 증감) or (홀 인덱스 , 홀 증감) : xor 연산하여 0번째 비트가 0이면
             total += result[i] = increment + ((i ^ Math.abs(increment)) & 1);

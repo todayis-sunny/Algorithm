@@ -11,7 +11,6 @@ public class Main {
     static int[][] testTube; // 시험관
     static final int[] dx = {-1, 1, 0, 0};
     static final int[] dy = {0, 0, -1, 1};
-    static boolean[][] visited;
     static Node find;
     static int ans = Integer.MAX_VALUE;
 
@@ -27,7 +26,6 @@ public class Main {
         K = Integer.parseInt(st.nextToken());
         // 시험관 정보 입력
         testTube = new int[N][N];
-        visited = new boolean[N][N];
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < N; j++) {
@@ -60,30 +58,33 @@ public class Main {
             return;
         };
         queue.offer(new Node(find.x, find.y));
-        visited[find.x][find.y] = true;
+        testTube[find.x][find.y] = -1;
+
 
 
         // 제한시간까지 계산
         while (!queue.isEmpty()) {
             Node curr = queue.poll();
-            // 제한시간이 초과되면 종료
-            if (curr.time >= S) return;
-            // 이미 찾은 경우 값 갱신
-            if (testTube[curr.x][curr.y] < ans && testTube[curr.x][curr.y] != 0) {
-                S = curr.time + 1;
-                ans = testTube[curr.x][curr.y];
-            }
 
             for (int i = 0; i < 4; i++) {
                 int nx = curr.x + dx[i];
                 int ny = curr.y + dy[i];
+                int nt = curr.time + 1;
                 // 범위 밖이면 스킵
                 if (nx < 0 || nx >= N || ny < 0 || ny >= N) continue;
                 // 이미 방문했으면 스킵
-                if (visited[nx][ny]) continue;
+                if (testTube[nx][ny] == -1) continue;
+                // 이미 지난시간이라면 스킵
+                if (nt >= S) continue;
+                // 바이러스를 찾음
+                if (testTube[nx][ny] != 0 && testTube[nx][ny] < ans) {
+                    S = nt + 1;
+                    ans = testTube[nx][ny];
+                }
+
                 // 위에 조건을 통과하면 감염
-                queue.offer(new Node(nx, ny, curr.time + 1)); // 새로운 탐색
-                visited[nx][ny] = true;
+                queue.offer(new Node(nx, ny, nt)); // 새로운 탐색
+                testTube[nx][ny] = -1;
             }
         }
     }

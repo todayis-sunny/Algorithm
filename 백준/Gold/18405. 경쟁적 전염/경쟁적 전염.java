@@ -1,7 +1,7 @@
-// 18405. [G5] 경쟁적 전염.
-
 import java.io.*;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -20,24 +20,27 @@ public class Main {
         output();
     }
 
+    static int read() throws IOException {
+        int c, n = System.in.read() & 15;
+        while ((c = System.in.read()) > 32) n = (n << 3 ) + (n << 1) + (c & 15);
+        return n;
+    }
+
     static void input() throws IOException {
-        st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        K = Integer.parseInt(st.nextToken());
+        N = read();
+        K = read();
         // 시험관 정보 입력
         testTube = new int[N][N];
         for (int i = 0; i < N; i++) {
-            st = new StringTokenizer(br.readLine());
             for (int j = 0; j < N; j++) {
-                int v = Integer.parseInt(st.nextToken());
-                testTube[i][j] = v;
+                testTube[i][j] = read();
             }
         }
+
         // 제한시간과 위치 입력
-        st = new StringTokenizer(br.readLine());
-        S = Integer.parseInt(st.nextToken()) + 1;
+        S = read() + 1;
         // 찾는 위치는 1-based이므로 우리의 조건에 맞게 0-based
-        find = new Node(Integer.parseInt(st.nextToken()) - 1, Integer.parseInt(st.nextToken()) - 1);
+        find = new Node(read() - 1, read() - 1);
     }
 
     static void solve() {

@@ -11,11 +11,13 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
     // 직원
     static char[] employee = {'A', 'B', 'C'};
-    // bit 유닛상태 - 0: A, 1: B, 2: C
-    static final int[] bit = {0, (1 << 1), (1 << 2) + (1 << 0)};
-    // 문자 개수 - 0: A, 1: B, 2: C
+    // bit 유닛상태 - [0]: (A 0b000 0), [1]: (B 0b010 2), [2]: (C 0b101 5)
+    static final int[] bit = {0, 2, 5};
+    // 출근자 횟수 - 0: A, 1: B, 2: C
     static int[] count = new int[3];
+    // 출근기록 출력
     static int[] record;
+    // [a][b][c][bit] : 남은출근 횟수 (a, b, c) + 최근 2일 근무자 상태(bit)에서 확인여부
     static boolean[][][][] visited;
     static int length;
     static boolean success = false;
@@ -59,7 +61,9 @@ public class Main {
         if (depth == length) {
             return true;
         }
+        // 이미 방문한 적이 있으면 탐색 거절
         if (visited[count[0]][count[1]][count[2]][bitmask]) return false;
+        // 새롭게 방문하기 체크
         visited[count[0]][count[1]][count[2]][bitmask] = true;
         for (int emp = 2; emp >= 0; emp--) {
             // 직원이 없으면 스킵
@@ -68,6 +72,7 @@ public class Main {
             if ((bitmask & bit[emp]) != 0) continue;
             count[emp]--;
             record[depth] = emp;
+            // 다음 출근자를 지정하기 위해 bitmask갱신
             if (dfs(depth + 1, ((bitmask >> 2) | bit[emp]))) {
                 return true;
             }
@@ -86,11 +91,11 @@ public class Main {
  010 B가 오늘 출근 (B는 어제만 당장 출근한게 아니면 가능 즉 XB: 불가 BX: 가능)
  이전 근무자 2명을 보고나서 근무가 가능한지 체크
  다음 근무자를 배치할때는 우로 2칸 쉬프트
- 
+
  (bit >> 2)를 하게 되는데
  C는 내일에도 지장있게 배치 됨
  B는 내일에는 지장없음
- 
+
 
  # 풀이 과정
  dfs로 탐색

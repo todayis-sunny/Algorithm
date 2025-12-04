@@ -1,7 +1,5 @@
-// 17616. [G3] 등수 찾기.
-
 import java.io.*;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -9,8 +7,10 @@ public class Main {
     static StringTokenizer st;
     static final int WIN = 1, UNKNOW = 0, LOSE = -1;
     static int N, M, X;
-    static int[][] battle; // 1-based, [a][b] : a와 b에 대해서 (1, a가 승), (0, 모름) (-1, a가 짐)
+    static List<List<Integer>> winList = new ArrayList<>();
+    static List<List<Integer>> loseList = new ArrayList<>();
     static int high, low;
+
     public static void main(String[] args) throws IOException {
         input();
         solve();
@@ -22,31 +22,26 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         X = Integer.parseInt(st.nextToken());
-        battle = new int[N + 1][N + 1];
+        for (int n = 0; n <= N; n++) {
+            winList.add(new ArrayList<>());
+            loseList.add(new ArrayList<>());
+        }
+
         // 대소관계 입력
         for (int m = 0; m < M; m++) {
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            battle[a][b] = WIN;
-            battle[b][a] = LOSE;
+            winList.get(b).add(a); // b에게 이긴 사람
+            loseList.get(a).add(b); // a에게 진 사람
         }
     }
 
     static void solve() {
-        floydWarshall();
-        high = 1;
-        low = N;
-        for (int y = 1; y <= N; y++) {
-            // 상대적으로 이긴 경우 최저 등수가 점점 높아짐
-            if (battle[X][y] == WIN) {
-                low--;
-            }
-            // 상대적으로 진 경우 최고 등수가 점점 떨어짐
-            else if (battle[X][y] == LOSE) {
-                high++;
-            }
-        }
+        // 상대적으로 이긴 경우 최저 등수가 점점 높아짐
+        high = 1 + bfs(LOSE);
+        // 상대적으로 진 경우 최고 등수가 점점 떨어짐
+        low = N - bfs(WIN);
     }
 
     static void output() throws IOException {
@@ -54,28 +49,48 @@ public class Main {
         bw.flush();
     }
 
-    static void floydWarshall() {
-        for (int x = 1; x <= N; x++) {
-            for (int y = 1; y <= N; y++) {
-                for (int z = 1; z <= N; z++) {
-                    if (battle[x][z] == WIN && battle[z][y] == WIN) {
-                        battle[x][y] = WIN;
-                        battle[y][x] = LOSE;
-                    } else if (battle[x][z] == LOSE && battle[z][y] == LOSE) {
-                        battle[x][y] = LOSE;
-                        battle[y][x] = WIN;
-                    }
-                }
+    static int bfs(int state) {
+        int cnt = 0;
+
+        boolean[] visited = new boolean[N + 1];
+        Queue<Integer> queue = new LinkedList<>();
+        List<List<Integer>> list;
+        // 몇 명에게 이겼는지 확인
+        if (state == WIN) {
+            list = loseList;
+        }
+        // 몇 명에게 졌는지 확인
+        else {
+            list = winList;
+        }
+        queue.offer(X);
+        visited[X] = true;
+        while (!queue.isEmpty()) {
+            int curr = queue.poll();
+            for (int next: list.get(curr)) {
+                // 이미 방문 했으면 스킵
+                if (visited[next]) continue;
+                // 방문 안했으면 더 탐색 및 인원수 세기
+                queue.offer(next);
+                visited[next] = true;
+                cnt++;
             }
         }
+        return cnt;
     }
+
 }
 /*
  # 접근 방법
- - 플로이드 워샬로 접근하기
-   
+ - 대상 x로 부터 y(이긴사람 or 진사람)를 리스트에 넣기
+ - bfs로 접근하기
+
  # 풀이 방법
- - 플로이드 워샬로 풀이하기
- - f(a,b)의 대소 관계를 f(a,c), f(c,b)로부터 도출
- #
+ - bfs로 상대적으로 이긴사람과 상대적으로 진사람의 수를 파악
+ */
+
+
+/*
+ 풀이날짜 2025. 12. 04
+ 소요시간 00h 00m
  */

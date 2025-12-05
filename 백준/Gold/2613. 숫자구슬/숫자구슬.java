@@ -48,11 +48,6 @@ public class Main {
             for (int i = 0; i < N;) {
                 // 구슬을 합칠수 없을때,
                 if (currVal + bead[i] > mid) {
-                    // 현재 조합의 개수가 0개면 불가능
-                    if (currCnt == 0) {
-                        left = mid + 1;
-                        continue parametricSearch;
-                    }
                     // 현재까지 조합한걸 넣기
                     groupQueue.offer(currCnt);
                     currVal = 0;

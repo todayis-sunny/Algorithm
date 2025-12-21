@@ -13,7 +13,7 @@ public class Main {
     static int N, ans;
     static List<List<Integer>> canEatList = new ArrayList<>();
     static Shark[] sharks;
-    static int[] eat;
+    static int[] eat; // [i] = j : i상어를 j상어가 먹음
     static boolean[] check;
 
     public static void main(String[] args) throws IOException {

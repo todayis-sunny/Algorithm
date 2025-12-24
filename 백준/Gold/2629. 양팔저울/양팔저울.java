@@ -10,7 +10,7 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
     static int N, M, max;
     static int[] weight, bead;
-    static boolean[] possible = new boolean[40_001];
+    static boolean[] possible = new boolean[40_001]; // 가능 여부
 
     public static void main(String[] args) throws IOException {
         input();

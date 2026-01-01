@@ -49,6 +49,7 @@ public class Main {
     static void solve() {
         // a친구를 선택 (제일 작은 번호)
         for (int a = 1; a <= N; a++) {
+            if (lists.get(a).size() <= 1) continue;
             // a-b친구 관계
             for (int b : lists.get(a)) {
                 // b-c친구 관계

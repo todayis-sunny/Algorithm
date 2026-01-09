@@ -9,8 +9,8 @@ public class Main {
     static StringTokenizer st;
     static int N, M;
     static int[] distance;
-    // dp[t][m][n] = t: 휴식 여부 (0 : 휴식중, 1: 달리는중), m: 지침 지수, n: n분(현재 시간)
-    static int[][][] dp; // [2][2-based][1-based]
+    // dp[m][n] = m: 지침 지수, n: n분(현재 시간)
+    static int[][] dp; // [1-based][1-based]
 
     public static void main(String[] args) throws IOException {
         input();
@@ -23,7 +23,7 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         distance = new int[N + 1];
-        dp = new int[2][M + 2][N + 1];
+        dp = new int[M + 1][N + 1];
         for (int n = 1; n <= N; n++) {
             distance[n] = Integer.parseInt(br.readLine());
         }
@@ -35,45 +35,29 @@ public class Main {
 
 
         for (int n = 1; n <= N; n++) {
-            int limit = Math.min(M + 1, n);
-            for (int m = 0; m <= limit; m++) {
-                // 쉬기
-                if (m < limit) {
-                    dp[0][m][n] = Math.max(dp[0][m + 1][n - 1], dp[1][m + 1][n - 1]); // 휴식 -> 휴식, 달리기 -> 휴식
-                }
-                if (m == 0) {
-                    dp[0][m][n] = Math.max(dp[0][m][n], dp[0][m][n - 1]);
-                }
-                // 달리기
-                if (m == 1) { // 쉬다가 달리기 가능
-                    dp[1][m][n] = dp[0][m - 1][n - 1] + distance[n];
-                } else if (m >= 2) { // 달리는 중에만 달리기 가능
-                    dp[1][m][n] = dp[1][m - 1][n - 1] + distance[n];
-                }
+            dp[0][n] = dp[0][n - 1];
+            int limit = Math.min(M, n);
+            for (int m = 1; m <= limit; m++) {
+                // 달리는 경우
+                dp[m][n] = dp[m - 1][n - 1] + distance[n];
+                // 쭉 쉬는 경우 (지침지수)(현재시간 - 지침지수)
+                dp[0][n] = Math.max(dp[0][n], dp[m][n - m]);
             }
         }
     }
 
     static void output() throws IOException {
-        bw.write(String.valueOf(dp[0][0][N]));
+        bw.write(String.valueOf(dp[0][N]));
         bw.flush();
 //        printDebug();
     }
 
     static void printDebug() {
         System.out.println();
-        for (int m = 0; m <= M + 1; m++) {
+        for (int m = 0; m <= M; m++) {
             System.out.printf("m%d :", m);
             for (int n = 0; n <= N; n++) {
-                System.out.printf("%2d ", dp[0][m][n]);
-            }
-            System.out.println();
-        }
-        System.out.println();
-        for (int m = 0; m <= M + 1; m++) {
-            System.out.printf("m%d :", m);
-            for (int n = 0; n <= N; n++) {
-                System.out.printf("%2d ", dp[1][m][n]);
+                System.out.printf("%2d ", dp[m][n]);
             }
             System.out.println();
         }

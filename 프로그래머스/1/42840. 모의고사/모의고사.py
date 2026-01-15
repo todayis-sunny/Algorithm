@@ -18,10 +18,10 @@ def solution(answers):
         if (c[i % 10]) == answers[i]:
             scores[2] += 1
     
-    max_value = max(scores)
+    maxValue = max(scores)
     
     for i in range(len(scores)):
-        if scores[i] == max_value:
+        if scores[i] == maxValue:
             answer.append(i + 1)
     
     return answer

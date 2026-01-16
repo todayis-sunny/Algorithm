@@ -1,7 +1,7 @@
 from collections import deque
 
 def solution(players, m, k):
-    ans = 0
+    res = 0
     curr = 0 # 운영중인 서버 수
     dq = deque() 
     # 인원 체크
@@ -17,7 +17,7 @@ def solution(players, m, k):
         if need > curr:
             plus = need - curr
             curr += plus
-            ans += plus
+            res += plus
             dq.append((t + k, plus))
         
-    return ans
+    return res

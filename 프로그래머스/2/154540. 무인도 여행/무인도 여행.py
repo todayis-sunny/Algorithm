@@ -26,11 +26,11 @@ def bfs(maps, x, y):
 def solution(maps):
     for i in range(len(maps)):
         maps[i] = list(maps[i])
-    answer = []
+    result = []
     for x in range(len(maps)):
         for y in range(len(maps[0])):
             if maps[x][y] != 'X':
-                answer.append(bfs(maps, x, y))
-    answer.sort()
+                result.append(bfs(maps, x, y))
+    result.sort()
     
-    return answer if answer else [-1]
+    return result if result else [-1]

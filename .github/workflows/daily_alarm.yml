@@ -2,7 +2,7 @@ name: Daily Mission Alarm
 
 on:
   schedule:
-    - cron: '58 6 * * *'
+    - cron: '04 7 * * *'
   workflow_dispatch:
 
 jobs:
@@ -14,4 +14,6 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
         with:
-          args: '🌙 **오늘의 알고리즘 미션이 리셋되었습니다!**\n오늘도 1일 1커밋 도전해보세요! (현재 상태: 0/1)'
+          args: |
+            🌙 **오늘의 알고리즘 미션이 리셋되었습니다!**
+            오늘도 1일 1커밋 도전해보세요! (현재 상태: 0/1)

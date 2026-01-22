@@ -2,7 +2,7 @@ name: Daily Mission Alarm
 
 on:
   schedule:
-    - cron: '59 7 * * *'
+    - cron: '24 8 * * *'
   workflow_dispatch: # 테스트용 수동 실행 버튼
 
 jobs:
@@ -13,18 +13,39 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
-          # 1. 현재 시간 구하기
-          TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          # 1. 한국 시간 날짜 구하기 & 요일 한글로 변환
+          # (서버에 한글 패치가 안 되어 있을 수 있어서 직접 변환합니다)
+          YEAR=$(TZ=Asia/Seoul date +%Y)
+          MONTH=$(TZ=Asia/Seoul date +%m)
+          DAY=$(TZ=Asia/Seoul date +%d)
+          WEEKDAY_NUM=$(TZ=Asia/Seoul date +%u) # 1(월) ~ 7(일)
+
+          # 요일 숫자 -> 한글 변환
+          case $WEEKDAY_NUM in
+            1) WEEK_KR="월" ;;
+            2) WEEK_KR="화" ;;
+            3) WEEK_KR="수" ;;
+            4) WEEK_KR="목" ;;
+            5) WEEK_KR="금" ;;
+            6) WEEK_KR="토" ;;
+            7) WEEK_KR="일" ;;
+          esac
+
+          TODAY_FULL="$YEAR년 $MONTH월 $DAY일 $WEEK_KR요일"
           
           # 2. 프로필 이미지 주소
           AVATAR_URL="https://raw.githubusercontent.com/todayis-sunny/Algorithm/main/.github/assets/algo_referee.png"
+          
+          # 3. 타임스탬프 (메시지 전송 시간용)
+          TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 
-          # 3. JSON 생성 (빨간색, 내용 변경)
+          # 4. JSON 생성
           payload=$(jq -n \
             --arg username "🔥 1일 1커밋" \
             --arg avatar "$AVATAR_URL" \
-            --arg title "🚨 오늘의 미션 시작!" \
+            --arg title "📣 오늘의 미션 시작!" \
             --arg desc "오늘의 알고리즘 미션이 리셋되었습니다." \
+            --arg today "$TODAY_FULL" \
             --arg timestamp "$TIMESTAMP" \
             '{
               username: $username,
@@ -35,13 +56,8 @@ jobs:
                 color: 15548997, # 🔴 빨간색 (Red)
                 fields: [
                   {
-                    name: "\u200b",
-                    value: "\u200b",
-                    inline: false
-                  },
-                  {
-                    name: "📊 현재 상태",
-                    value: "```diff\n- [미완료] 0/1 (오늘 푼 문제 없음)\n```",
+                    name: "🗓️ 오늘 날짜",
+                    value: $today,
                     inline: false
                   }
                 ],

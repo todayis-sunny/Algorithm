@@ -1,0 +1,17 @@
+name: Daily Mission Alarm
+
+on:
+  schedule:
+    # 한국 시간 15:50 (UTC 06:50) 에 실행
+    - cron: '50 6 * * *'
+
+jobs:
+  daily-start:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Morning Quest
+        uses: Ilshidur/action-discord@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        with:
+          args: '🌙 **오늘의 알고리즘 미션이 리셋되었습니다!**\n오늘도 1일 1커밋 도전해보세요! (현재 상태: 0/1)'

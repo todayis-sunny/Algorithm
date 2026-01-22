@@ -2,7 +2,7 @@ name: Daily Mission Alarm
 
 on:
   schedule:
-    - cron: '24 8 * * *'
+    - cron: '40 8 * * *'
   workflow_dispatch: # 테스트용 수동 실행 버튼
 
 jobs:
@@ -57,7 +57,7 @@ jobs:
                 fields: [
                   {
                     name: "🗓️ 오늘 날짜",
-                    value: $today,
+                    value: ("```\n" + $today + "\n```"),
                     inline: false
                   }
                 ],

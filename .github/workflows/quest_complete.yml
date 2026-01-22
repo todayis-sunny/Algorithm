@@ -17,10 +17,40 @@ jobs:
   mission-complete:
     runs-on: ubuntu-latest
     steps:
-      - name: Send Discord Notification
-        uses: Ilshidur/action-discord@master
+      - name: Send Quest Complete Embed
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        with:
-          # 메시지 내용 커스터마이징 가능
-          args: '🔥 **${{ github.actor }}**님이 문제 풀이 코드를 업로드했습니다! (언어: ${{ github.event.commits[0].message }})'
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+          GIT_ACTOR: ${{ github.actor }}
+        run: |
+          # 1. 현재 시간(UTC)을 디스코드가 좋아하는 형식(ISO 8601)으로 가져오기
+          TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+
+          # 2. JSON 생성 (jq 사용)
+          payload=$(jq -n \
+            --arg username "🔥 1일 1커밋" \
+            --arg avatar "https://i.imgur.com/4M34hi2.png" \
+            --arg title "☘️ 잔디심기 완료!" \
+            --arg desc "**$GIT_ACTOR**님이 문제를 해결하고 코드를 제출했습니다.\n오늘의 미션 성공!" \
+            --arg commit "$COMMIT_MSG" \
+            --arg timestamp "$TIMESTAMP" \
+            '{
+              username: $username,
+              avatar_url: $avatar,
+              embeds: [{
+                title: $title,
+                description: $description,
+                color: 5763719,
+                fields: [{
+                  name: "📜 커밋 메시지",
+                  value: ("```\n" + $commit + "\n```"),
+                  inline: false
+                }],
+                footer: { text: "알고리즘 퀘스트 시스템" },
+                timestamp: $timestamp
+              }]
+            }'
+          )
+
+          # 3. 전송
+          curl -H "Content-Type: application/json" -d "$payload" "$DISCORD_WEBHOOK"

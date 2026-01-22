@@ -39,7 +39,7 @@ jobs:
               avatar_url: $avatar,
               embeds: [{
                 title: $title,
-                description: $description,
+                description: $desc,
                 color: 5763719,
                 fields: [{
                   name: "📜 커밋 메시지",

@@ -1,0 +1,26 @@
+name: Algorithm Quest Checker
+
+on:
+  push:
+    paths:
+      # 아래 확장자 파일이 수정/추가되었을 때만 알림을 보냅니다.
+      - '**.java'   # Java
+      - '**.c'      # C
+      - '**.cpp'    # C++
+      - '**.cc'     # C++ (가끔 이 확장자도 쓰임)
+      - '**.py'     # Python
+      - '**.kt'     # Kotlin
+      - '**.js'     # JavaScript
+      - '**.swift'  # Swift
+
+jobs:
+  mission-complete:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord Notification
+        uses: Ilshidur/action-discord@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        with:
+          # 메시지 내용 커스터마이징 가능
+          args: '🔥 **${{ github.actor }}**님이 문제 풀이 코드를 업로드했습니다! (언어: ${{ github.event.commits[0].message }})'

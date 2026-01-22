@@ -12,6 +12,7 @@ on:
       - '**.kt'     # Kotlin
       - '**.js'     # JavaScript
       - '**.swift'  # Swift
+  workflow_dispatch:
 
 jobs:
   mission-complete:
@@ -33,7 +34,7 @@ jobs:
             --arg username "🔥 1일 1커밋" \
             --arg avatar "$AVATAR_URL" \
             --arg title "☘️ 잔디심기 완료!" \
-            --arg git_actor "$GIT_ACTOR" \
+            --arg desc "**$GIT_ACTOR**님이 문제를 해결하고 코드를 제출했습니다." \
             --arg commit "$COMMIT_MSG" \
             --arg timestamp "$TIMESTAMP" \
             '{
@@ -41,7 +42,7 @@ jobs:
               avatar_url: $avatar,
               embeds: [{
                 title: $title,
-                description: ("**" + $git_actor + "**님이 문제를 해결하고 코드를 제출했습니다.\n오늘의 미션 성공!\n"),
+                description: $desc,
                 color: 5763719,
                 fields: [{
                   name: "📜 커밋 메시지",

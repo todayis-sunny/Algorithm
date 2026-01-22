@@ -2,8 +2,8 @@ name: Daily Mission Alarm
 
 on:
   schedule:
-    # 한국 시간 15:50 (UTC 06:50) 에 실행
-    - cron: '50 6 * * *'
+    - cron: '58 6 * * *'
+  workflow_dispatch:
 
 jobs:
   daily-start:

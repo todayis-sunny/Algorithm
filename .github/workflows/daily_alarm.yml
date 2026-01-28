@@ -2,7 +2,7 @@ name: Daily Mission Alarm
 
 on:
   schedule:
-    - cron: '40 8 * * *'
+    - cron: '0 15 * * *'
   workflow_dispatch: # 테스트용 수동 실행 버튼
 
 jobs:

@@ -1,5 +1,5 @@
 def solution(tickets):
-    answer = []
+    result = []
     graph = {}
     for st, ed in tickets:
         if st not in graph:
@@ -11,8 +11,8 @@ def solution(tickets):
     while stack:
         tm = stack[-1]
         if tm not in graph or len(graph[tm]) == 0:
-            answer.append(stack.pop())
+            result.append(stack.pop())
         else:
             stack.append(graph[tm].pop())
 
-    return answer[::-1]
+    return result[::-1]

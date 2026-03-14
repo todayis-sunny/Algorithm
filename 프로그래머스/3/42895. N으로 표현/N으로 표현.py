@@ -1,5 +1,5 @@
 def solution(N, number):
-    dp  = [set([int(str(N)*i)]) for i in range(1, 9)] 
+    dp  = [set([int(str(N) * i)]) for i in range(1, 9)] 
     
     # N 사용 횟수
     for i in range(8):
@@ -7,7 +7,7 @@ def solution(N, number):
             # j 개
             for num1 in dp[j]:
                 # i-j 개
-                for num2 in dp[i-j-1]:
+                for num2 in dp[i - j - 1]:
                     dp[i].add(num1 + num2)
                     dp[i].add(num1 - num2)
                     dp[i].add(num1 * num2)

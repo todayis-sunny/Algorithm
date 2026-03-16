@@ -1,5 +1,5 @@
 def solution(food):
-    answer = ""
+    result = ""
     for i in range(1, len(food)):
-        answer += str(i) * (food[i]//2)
-    return answer + '0' + answer[::-1]
+        result += str(i) * (food[i] // 2)
+    return result + '0' + result[::-1]

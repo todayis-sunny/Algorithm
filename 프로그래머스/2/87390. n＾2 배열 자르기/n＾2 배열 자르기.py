@@ -1,7 +1,7 @@
 def solution(n, left, right):
-    ans = []
+    result = []
     for num in range(left, right + 1):
         div, mod = divmod(num, n)
-        ans.append(max(div, mod) + 1)
+        result.append(max(div, mod) + 1)
     
-    return ans
+    return result

@@ -1,7 +1,7 @@
 INF = 10e9
 
 def solution(a):
-    answer = 0
+    result = 0
     leftMin = [INF + 1] * len(a)
     rightMin = [INF + 1] * len(a)
     leftMin[0] = a[0]
@@ -12,5 +12,5 @@ def solution(a):
         rightMin[i] = min(rightMin[i + 1], a[i])
     for i in range(len(a)):
         if leftMin[i] < a[i] and rightMin[i] < a[i]:
-            answer += 1
-    return len(a) - answer
+            result += 1
+    return len(a) - result

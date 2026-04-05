@@ -2,7 +2,6 @@ import sys
 sys.setrecursionlimit(10**9)
 
 def solution(n, lighthouse):
-    ans = 0
     visited = [False] * (n+1)
     dp = [[0, 0] for _ in range(n+1)]
     
@@ -23,6 +22,5 @@ def solution(n, lighthouse):
                 dp[x][1] += min(dp[i][0], dp[i][1])
                 
     dfs(1)
-    ans = min(dp[1][0], dp[1][1])
+    return min(dp[1][0], dp[1][1])
         
-    return ans

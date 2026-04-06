@@ -1,5 +1,5 @@
 def solution(x):
-    answer = []
+    result = []
     
     cnt = 0
     zero = 0
@@ -14,6 +14,6 @@ def solution(x):
         
         cnt = cnt + 1
     
-    answer = [cnt, zero]
+    result = [cnt, zero]
     
-    return answer
+    return result

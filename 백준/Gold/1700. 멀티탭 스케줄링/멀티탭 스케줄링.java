@@ -1,4 +1,4 @@
-// [BOJ] 01700. 멀티탭 스케줄링
+//[BOJ] 01700. 멀티탭 스케줄링
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;

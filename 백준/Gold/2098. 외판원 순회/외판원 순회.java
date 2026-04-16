@@ -1,4 +1,4 @@
-// 02098. 외판원 순회.
+// 02098. [G1] 외판원 순회.
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
@@ -41,7 +41,7 @@ public class Main {
         if (memory[prev][bits] == INF) {
             int mn = Integer.MAX_VALUE;
             for (int next = 0; next < N; next++) {
-                if ((bits & (1 << next)) == 0 && prev != next) {
+                if ((bits & (1 << next)) == 0) {
                     int cost = values[prev][next] == 0 ? INF : values[prev][next];
                     mn = Math.min(mn, tsp(next, bits | (1 << next)) + cost);
                 }

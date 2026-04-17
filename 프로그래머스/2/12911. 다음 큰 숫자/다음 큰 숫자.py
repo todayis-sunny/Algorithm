@@ -1,10 +1,11 @@
 def solution(n):
-    next = n
-    answer = 0
+    num = n
+    result = 0
+    
     while True:
-        next += 1
-        if bin(n)[2:].count('1') == bin(next)[2:].count('1'):
-            answer = next
+        num += 1
+        if bin(n)[2:].count('1') == bin(num)[2:].count('1'):
+            result = num
             break
     
-    return answer
+    return result

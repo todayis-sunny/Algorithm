@@ -1,0 +1,16 @@
+INF = 10e9
+
+def solution(a):
+    result = 0
+    leftMin = [INF + 1] * len(a)
+    rightMin = [INF + 1] * len(a)
+    leftMin[0] = a[0]
+    for i in range(1, len(a)):
+        leftMin[i] = min(leftMin[i - 1], a[i])
+    rightMin[-1] = a[-1]
+    for i in range(len(a) - 2, -1, -1):
+        rightMin[i] = min(rightMin[i + 1], a[i])
+    for i in range(len(a)):
+        if leftMin[i] < a[i] and rightMin[i] < a[i]:
+            result += 1
+    return len(a) - result

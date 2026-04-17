@@ -12,4 +12,4 @@ def solution(clothes):
     for _, value in closet.items():
         answer *= (len(value) + 1)
         
-    return answer -1
+    return answer - 1

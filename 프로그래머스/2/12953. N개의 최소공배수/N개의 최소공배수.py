@@ -1,9 +1,9 @@
 from math import gcd 
 
 def solution(arr):
-                               
-    answer = arr[0]                                 
+    # 가장 작은 수를 가져옴
+    result = arr[0]                                 
     for num in arr:                           
-        answer = answer*num // gcd(answer, num)     
+        result = result * num // gcd(result, num)     
 
-    return answer
+    return result

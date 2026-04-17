@@ -1,14 +1,14 @@
 from collections import deque
 
 def solution(begin, target, words):
-    answer = 0
+    result = 0
     q = deque()
     q.append([begin, 0])    # [단어, 깊이]
     V = [ 0 ] * (len(words))    # 방문 노드 여부 확인 리스트
     while q:
         word, cnt = q.popleft()
         if word == target:
-            answer = cnt
+            result = cnt
             break        
         for i in range(len(words)):
             temp_cnt = 0
@@ -22,4 +22,4 @@ def solution(begin, target, words):
                     q.append([words[i], cnt+1])
                     V[i] = 1
 
-    return answer
+    return result

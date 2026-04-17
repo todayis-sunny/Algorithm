@@ -3,6 +3,7 @@ def solution(park, routes):
     x = 0
     y = 0 
     
+    
     # 시작 위치 찾기
     for i in range(len(park)):
         for j in range(len(park[i])):
@@ -10,6 +11,7 @@ def solution(park, routes):
                 x = j
                 y = i
                 break
+    
     
     # 이동
     for route in routes:

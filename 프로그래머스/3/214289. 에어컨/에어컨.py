@@ -12,15 +12,15 @@ def solution(temp, t1, t2, a, b, onboard):
     t2 += 11
     # 초기화 설정.
     dp[0][temp] = 0 # 에어컨을 키지 않았을 시.
-    dp[0][temp-1] = a # 에어컨 가동 -> 온도 하강.
-    dp[0][temp+1] = a # 에어컨 가동 -> 온도 상승.
+    dp[0][temp - 1] = a # 에어컨 가동 -> 온도 하강.
+    dp[0][temp + 1] = a # 에어컨 가동 -> 온도 상승.
     
     
     # 손님이 탑승하는 흐름도에 따라 반복. i는 현재 초를 의미.
     for i in range(1, len(onboard)):
         # 승객 탑승. -> 유효한 범위만 계산.
         if onboard[i]:
-            left, right = t1, t2+1
+            left, right = t1, t2 + 1
         # 승객 미탑승. -> 모든 범위 계산.
         else:
             left, right = 1, 52
@@ -28,20 +28,20 @@ def solution(temp, t1, t2, a, b, onboard):
         for t in range(left, right):
             # 온도를 1 증가하는 방법.
             if temp > t-1: # 외부 온도가 이전온도보다 높을때 비용 x
-                dp[i][t] = min(dp[i][t], dp[i-1][t-1])
+                dp[i][t] = min(dp[i][t], dp[i - 1][t - 1])
             else: # 에어컨을 사용해야 할때 비용 a
-                dp[i][t] = min(dp[i][t], dp[i-1][t-1] + a)
+                dp[i][t] = min(dp[i][t], dp[i - 1][t - 1] + a)
             
             # 온도를 유지하는 방법.
             if temp == t: # 외부 온도와 유지하려는 온도가 같다면 비용 x
-                dp[i][t] = min(dp[i][t], dp[i-1][t])
+                dp[i][t] = min(dp[i][t], dp[i - 1][t])
             else: # 외부 온도와 유지하려는 온도가 다르면 비용 b
-                dp[i][t] = min(dp[i][t], dp[i-1][t] + b)
+                dp[i][t] = min(dp[i][t], dp[i - 1][t] + b)
 
             # 온도를 1 감소하는 방법.
             if temp < t+1: # 외부 온도가 이전온도보다 낮을때 비용 x
-                dp[i][t] = min(dp[i][t], dp[i-1][t+1])
+                dp[i][t] = min(dp[i][t], dp[i - 1][t + 1])
             else: # 에어컨을 사용해야 할때 비용 a
-                dp[i][t] = min(dp[i][t], dp[i-1][t+1] + a)
+                dp[i][t] = min(dp[i][t], dp[i - 1][t + 1] + a)
     
     return min(dp[-1])

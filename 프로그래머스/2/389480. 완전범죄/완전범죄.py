@@ -1,5 +1,6 @@
+INF = 1e9
+
 def solution(info, n, m):
-    INF = 1e9
     dp = [[INF] * n for _ in range(len(info))] # [i][n] : i번째 물건을 훔칠때, A가 남긴 흔적의 갯수 -> B가 남긴 흔적의 갯수
     # 초기화
     if info[0][0] < n:
@@ -23,10 +24,25 @@ def solution(info, n, m):
                 dp[i][k] = min(dp[i][k], dp[i - 1][k] + nB)
 
     # 정답 반환                 
-    for ans in range(n):
-        if dp[-1][ans] != INF:
-            return ans
+    for result in range(n):
+        if dp[-1][result] != INF:
+            return result
     return -1
+# [[3, 3], [3, 3], [3, 3], [3, 3], [3, 3], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1]]
+# def solution(info, n, m):
+#     answer = 0
 
+#     info.sort(key = lambda x : (-x[0], x[1]))
+#     check_b = 0
 
+#     print(info)
+#     for i in range(len(info)):
+#         a, b = info[i]
+
+#         if check_b + b >= m:
+#             answer += a
+#         else:
+#             check_b += b
+
+#     return -1 if answer >= n else answer
 

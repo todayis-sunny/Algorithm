@@ -6,7 +6,7 @@ def solution(num):
             num /= 2
         # 홀수
         else:
-            num = num*3 + 1
+            num = num * 3 + 1
             
         answer += 1
         if answer == 500:

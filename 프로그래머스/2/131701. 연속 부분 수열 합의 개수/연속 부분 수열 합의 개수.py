@@ -4,5 +4,5 @@ def solution(elements):
     s = []
     for i in range(len(elements)):
         for j in range(len(elements)):
-            s.append(sum(cycle[i:i+j]))
+            s.append(sum(cycle[i : i + j]))
     return len(set(s))

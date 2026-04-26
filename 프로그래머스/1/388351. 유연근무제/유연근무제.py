@@ -4,7 +4,7 @@ def convertTime(n): # 분 단위로 변환
     return h * 60 + m
 
 def solution(schedules, timelogs, startday):
-    answer = 0
+    result = 0
     
     for i in range(len(schedules)):
         s = startday
@@ -21,6 +21,6 @@ def solution(schedules, timelogs, startday):
             else:
                 s += 1
         else:
-            answer += 1
+            result += 1
 
-    return answer
+    return result

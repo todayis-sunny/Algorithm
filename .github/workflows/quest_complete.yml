@@ -1,0 +1,59 @@
+name: Algorithm Quest Checker
+
+on:
+  push:
+    paths:
+      # 아래 확장자 파일이 수정/추가되었을 때만 알림을 보냅니다.
+      - '**.java'   # Java
+      - '**.c'      # C
+      - '**.cpp'    # C++
+      - '**.cc'     # C++ (가끔 이 확장자도 쓰임)
+      - '**.py'     # Python
+      - '**.kt'     # Kotlin
+      - '**.js'     # JavaScript
+      - '**.swift'  # Swift
+  workflow_dispatch:
+
+jobs:
+  mission-complete:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Quest Complete Embed
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+          GIT_ACTOR: ${{ github.actor }}
+        run: |
+          # 1. 현재 시간(UTC)을 디스코드가 좋아하는 형식(ISO 8601)으로 가져오기
+          TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          
+          AVATAR_URL="https://raw.githubusercontent.com/todayis-sunny/Algorithm/main/.github/assets/algo_referee.png"
+
+          # 2. JSON 생성 (jq 사용)
+          payload=$(jq -n \
+            --arg username "🔥 1일 1커밋" \
+            --arg avatar "$AVATAR_URL" \
+            --arg title "☘️ 잔디심기 완료!" \
+            --arg desc "**$GIT_ACTOR**님이 문제를 해결하고 코드를 제출했습니다." \
+            --arg commit "$COMMIT_MSG" \
+            --arg timestamp "$TIMESTAMP" \
+            '{
+              username: $username,
+              avatar_url: $avatar,
+              embeds: [{
+                title: $title,
+                description: $desc,
+                color: 5763719,
+                fields: [{
+                  name: "📜 커밋 메시지",
+                  value: ("```\n" + $commit + "\n```"),
+                  inline: false
+                }],
+                footer: { text: "completed" },
+                timestamp: $timestamp
+              }]
+            }'
+          )
+
+          # 3. 전송
+          curl -H "Content-Type: application/json" -d "$payload" "$DISCORD_WEBHOOK"

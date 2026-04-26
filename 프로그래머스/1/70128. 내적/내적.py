@@ -1,5 +1,5 @@
 def solution(a, b):
-    ans = 0
+    result = 0
     for i in range(len(a)):
-        ans += a[i] * b[i]
-    return ans
+        result += a[i] * b[i]
+    return result

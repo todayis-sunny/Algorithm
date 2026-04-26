@@ -1,7 +1,7 @@
 from itertools import permutations
 
 def solution(k, dungeons):
-    ans = 0
+    result = 0
     for p in permutations(dungeons, len(dungeons)):
         tmp = k
         cnt = 0 
@@ -10,5 +10,5 @@ def solution(k, dungeons):
             if tmp >= need:
                 tmp -= spend
                 cnt += 1
-        ans = max(ans, cnt)
-    return ans
+        result = max(result, cnt)
+    return result

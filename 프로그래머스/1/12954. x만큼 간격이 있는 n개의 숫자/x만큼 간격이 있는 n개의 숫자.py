@@ -1,9 +1,9 @@
 def solution(x, n):
-    answer = []
+    result = []
     if x == 0:
         for i in range(n):
-            answer.append(0)
-        return answer
+            result.append(0)
+        return result
     for i in range(x, x * (n + 1), x):
-        answer.append(i)
-    return answer
+        result.append(i)
+    return result

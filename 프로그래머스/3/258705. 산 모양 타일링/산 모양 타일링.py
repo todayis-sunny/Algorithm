@@ -20,9 +20,9 @@ def solution(n, tops):
     for k in range(1, n):
         # 이전 방법이 4번이 아닌 경우 (1, 3)번 적용 가능 + 이전 방법이 4번인 경우 (1)번 적용 가능
         # 지붕이 있으면 추가로 2번 적용 가능
-        dpN[k] = dpN[k-1] * (2 + tops[k]) + dpS[k-1] * (1 + tops[k]) 
+        dpN[k] = dpN[k - 1] * (2 + tops[k]) + dpS[k - 1] * (1 + tops[k]) 
         # 이전 방법에 대한 경우의 수에 대해 모두 4번 적용 가능
-        dpS[k] = dpN[k-1] + dpS[k-1] 
+        dpS[k] = dpN[k - 1] + dpS[k - 1] 
         
         dpN[k] %= MOD
         dpS[k] %= MOD

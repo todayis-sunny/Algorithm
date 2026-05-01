@@ -1,9 +1,9 @@
 def solution(numbers):
-    answer = []
+    result = []
 
     for n in numbers:
         if n % 2 == 0:  # 짝수일 경우
-            answer.append(n + 1)
+            result.append(n + 1)
         else:  # 홀수 인 경우
             temp = '0' + bin(n)[2:]
             rIdx = temp.rfind('0')
@@ -14,6 +14,6 @@ def solution(numbers):
             
             tempStr = "".join(tempList)
             
-            answer.append(int(tempStr, 2))
+            result.append(int(tempStr, 2))
                 
-    return answer
+    return result

@@ -1,5 +1,5 @@
 def solution(want, number, discount):
-    answer = 0
+    result = 0
     dict_wishlist = {}
 
     for i in range(len(want)):
@@ -13,6 +13,6 @@ def solution(want, number, discount):
             else:
                 break
         if sum(dict_tmp.values()) == 0:
-            answer += 1
+            result += 1
 
-    return answer
+    return result

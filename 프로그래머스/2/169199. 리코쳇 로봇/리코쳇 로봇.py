@@ -14,21 +14,21 @@ def solution(board):
                 return t
             for i in range(4):
                 for k in range(1, 101):
-                    nx = x + dx[i]*k
-                    ny = y + dy[i]*k
+                    nx = x + dx[i] * k
+                    ny = y + dy[i] * k
                     # 영역끝에 닿은 경우
                     if nx == -1 or nx == len(board) or ny == -1 or ny == len(board[i]):
-                        nx = x + dx[i]*(k-1)
-                        ny = y + dy[i]*(k-1)
+                        nx = x + dx[i] * (k - 1)
+                        ny = y + dy[i] * (k - 1)
                         break
                     # 장애물에 닿은 경우
                     if board[nx][ny] == 'D':
-                        nx = x + dx[i]*(k-1)
-                        ny = y + dy[i]*(k-1)
+                        nx = x + dx[i] * (k - 1)
+                        ny = y + dy[i] * (k - 1)
                         break
                 if not visited[nx][ny]:
                     visited[nx][ny] = True
-                    dq.append((nx, ny, t+1))
+                    dq.append((nx, ny, t + 1))
         return -1
                     
     # solution 시작

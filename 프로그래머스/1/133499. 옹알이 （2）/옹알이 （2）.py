@@ -1,5 +1,5 @@
 def solution(babbling):
-    answer = 0
+    result = 0
     can = ["aya", "ye", "woo", "ma"]
     
     for bab in babbling:
@@ -8,6 +8,6 @@ def solution(babbling):
                 bab = bab.replace(c, " ")
                 
         if bab.isspace():
-            answer += 1
+            result += 1
             
-    return answer
+    return result

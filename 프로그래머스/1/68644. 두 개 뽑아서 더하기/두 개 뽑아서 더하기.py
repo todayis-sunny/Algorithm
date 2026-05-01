@@ -1,9 +1,9 @@
 from itertools import combinations
 
 def solution(numbers):
-    ans = []
+    result = []
     temp = list(combinations(numbers, 2))
-    for element in temp:
-        ans.append(sum(element))
-        ans = list(set(ans))
-    return sorted(ans)
+    for e in temp:
+        result.append(sum(e))
+        result = list(set(result))
+    return sorted(result)

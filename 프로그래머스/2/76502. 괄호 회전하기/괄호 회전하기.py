@@ -6,7 +6,7 @@ right = [')', ']', '}']
 def solution(s):
     ss = s * 2
     length = len(s)
-    answer = 0
+    result = 0
     for i in range(length):
         tmp = ss[i:i+length]
         dq = deque()
@@ -22,6 +22,6 @@ def solution(s):
                     break
         else:
             if not dq:
-                answer += 1
+                result += 1
             
-    return answer
+    return result

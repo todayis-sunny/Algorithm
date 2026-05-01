@@ -1,6 +1,5 @@
+MOD = 1_000_000_007
 def solution(n, count):
-    MOD = 1_000_000_007
-
     dp = [[0] * (count +1) for _ in range(n + 1)]
     dp[1][1] = 1
     # dp 배열 채우기

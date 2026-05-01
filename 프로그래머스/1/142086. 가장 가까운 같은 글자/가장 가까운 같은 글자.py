@@ -1,14 +1,14 @@
 def solution(s):
-    ans = []
-    tmp = []
+    result = []
+    temp = []
     for ch in s:
-        if ch in tmp:
-            for i in range(1, len(tmp)+1):
-                if ch == tmp[-i]:
-                    ans.append(i)
+        if ch in temp:
+            for i in range(1, len(temp) + 1):
+                if ch == temp[-i]:
+                    result.append(i)
                     break
-            tmp.append(ch)
+            temp.append(ch)
         else:
-            ans.append(-1)
-            tmp.append(ch)
-    return ans
+            result.append(-1)
+            temp.append(ch)
+    return result

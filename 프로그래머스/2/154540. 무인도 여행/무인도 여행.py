@@ -3,6 +3,7 @@ from collections import deque
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
 
+# 섬의 크기 파악
 def bfs(maps, x, y):
     cnt = 0
     dq = deque()
@@ -17,6 +18,7 @@ def bfs(maps, x, y):
             ny = y + dy[i]
             if 0 <= nx < len(maps) and 0 <= ny < len(maps[0]) and maps[nx][ny] != 'X':
                 dq.append((nx, ny))
+                # 문자를 숫자로 변환
                 cnt += int(maps[nx][ny])
                 maps[nx][ny] = 'X'
                 

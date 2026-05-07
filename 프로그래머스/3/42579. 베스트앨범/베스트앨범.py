@@ -1,5 +1,5 @@
 def solution(genres, plays):
-    ans = []
+    result = []
     total = {} # {장르: 총 재생 횟수}
     gen = {} # {장르: [(플레이 횟수, 고유번호)]}
 
@@ -12,7 +12,7 @@ def solution(genres, plays):
 
 	# 재생 횟수 내림차순, 인덱스 오름차순 정렬
     for (genre, totalPlay) in genSort:
-        gen[genre] = sorted(gen[genre], key=lambda x: (-x[0], x[1]))
-        ans += [idx for (play, idx) in gen[genre][:2]]
+        gen[genre] = sorted(gen[genre], key = lambda x: (-x[0], x[1]))
+        result += [idx for (play, idx) in gen[genre][:2]]
 
-    return ans
+    return result

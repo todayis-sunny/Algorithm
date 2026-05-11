@@ -22,7 +22,7 @@ def solution(n, roads, sources, destination):
                 dq.append((y, t + 1))
                 memo[y] = t + 1
         
-    answer = []
+    result = []
     for s in sources:
-        answer.append(memo[s])
-    return answer
+        result.append(memo[s])
+    return result

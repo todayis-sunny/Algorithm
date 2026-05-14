@@ -76,8 +76,8 @@ private class Solution {
     }
 
     fun updatePP(i: Int, j: Int) {
-        for (a in 0..4) {
-            for (b in 0..4) {
+        for (a in 1..4) {
+            for (b in 1..4) {
                 dp[i + a][j + b] = minOf(dp[i + a][j + b], dp[i][j] + pp)
             }
         }

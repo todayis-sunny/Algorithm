@@ -1,4 +1,3 @@
-package jungol.solved_3_g2.p06326
 // [G2] 06326. 백열등 2
 
 fun main() {

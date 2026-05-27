@@ -1,4 +1,4 @@
-// [G3] 04755. 고드름
+// [G3] 04775. 고드름
 
 import java.util.PriorityQueue
 import java.util.StringTokenizer

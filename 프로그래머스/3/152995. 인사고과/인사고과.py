@@ -1,5 +1,5 @@
 def solution(scores):
-    answer = 1
+    result = 1
     wh = scores[0]
     whSco = sum(wh)
     scores.sort(key = lambda x:(-x[0], x[1]))
@@ -12,6 +12,6 @@ def solution(scores):
         if scores[i][1] >= maxSco:
             maxSco = scores[i][1]
             if scores[i][0] + scores[i][1] > whSco:
-                answer += 1
+                result += 1
 
-    return answer
+    return result

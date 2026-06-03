@@ -10,7 +10,7 @@ def solution(beginning, target):
             goal[r][c] = beginning[r][c] ^ target[r][c]
     
     # 0행을 뒤집지 않고 진행
-    answer = INF
+    result = INF
     count = 0
     board = [[0] * colMax for _ in range(rowMax)]
     for c in range(colMax):
@@ -29,7 +29,7 @@ def solution(beginning, target):
         for c in range(colMax):
             board[r][c] += 1
     if check(board, goal):
-        answer = count
+        result = count
     
     # 0행을 뒤집고 진행
     count = 1
@@ -53,11 +53,11 @@ def solution(beginning, target):
         for c in range(colMax):
             board[r][c] += 1
     if check(board, goal):
-        answer = min(count, answer)
+        result = min(count, result)
         
-    if answer == INF:
+    if result == INF:
         return -1
-    return answer
+    return result
 
 def check(board, goal):
     for r in range(len(board)):

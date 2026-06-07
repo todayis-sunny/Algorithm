@@ -1,7 +1,7 @@
 from collections import deque
 
 def solution(skill, skill_trees):
-    answer = 0
+    reuslt = 0
     for st in skill_trees:
         dq = deque(list(skill))
         for s in st:
@@ -11,8 +11,8 @@ def solution(skill, skill_trees):
                 else:
                     break
             if not dq:
-                answer += 1
+                reuslt += 1
                 break
         else:
-            answer += 1
-    return answer
+            reuslt += 1
+    return reuslt

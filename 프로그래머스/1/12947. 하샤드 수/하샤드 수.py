@@ -1,7 +1,7 @@
 def solution(x):
-    ans = 0
+    result = 0
     for e in str(x):
-        ans += int(e)
-    if x % ans == 0:
+        result += int(e)
+    if x % result == 0:
         return True
     return False

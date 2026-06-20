@@ -11,10 +11,10 @@ def solution(survey, choices):
         elif c < 4:
             score[s[0]] += 4 - c
     # 결과 도출
-    answer = ""
+    result = ""
     for i in range(0, 8, 2):
         if score[UNITS[i]] >= score[UNITS[i + 1]]:
-            answer += UNITS[i]
+            result += UNITS[i]
         else:
-            answer += UNITS[i + 1]
-    return answer
+            result += UNITS[i + 1]
+    return result

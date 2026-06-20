@@ -1,8 +1,7 @@
 import heapq
 
+INF = 1e9
 def solution(n, s, a, b, fares):
-    INF = 1e9
-    
     # 인접리스트로 변경.
     maps = [[] for _ in range(n+1)]
     for v, u, c in fares:
@@ -35,6 +34,3 @@ def solution(n, s, a, b, fares):
         path = min(path, D[s][i] + D[i][a] + D[i][b])
         
     return path
-        
-    
-    return answer

@@ -2,7 +2,7 @@ from heapq import heapify, heappush, heappop
 
 def solution(operations):
     # 정답 배열, 우선순위큐 배열
-    ans = []
+    result = []
     hq = []
     
     for operation in operations:
@@ -22,8 +22,8 @@ def solution(operations):
     # 모든 연산을 처리한 후
     hq.sort()
     if hq: # 큐가 비어있지 않음
-        ans = [hq[-1], hq[0]]
+        result = [hq[-1], hq[0]]
     else: # 큐가 비어있음
-        ans = [0, 0]
+        result = [0, 0]
         
-    return ans
+    return result

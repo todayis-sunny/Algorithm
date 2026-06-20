@@ -1,5 +1,5 @@
 def solution(line):
-    answer = []    
+    result = []    
     points = set()
     
     # 교점 구하기
@@ -35,6 +35,6 @@ def solution(line):
                 row += "*"
             else:
                 row += "."
-        answer.append(row)
+        result.append(row)
                     
-    return answer
+    return result

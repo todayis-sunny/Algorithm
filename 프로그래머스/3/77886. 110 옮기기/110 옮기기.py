@@ -1,11 +1,11 @@
 from collections import deque
 
 def solution(s):
-    answer = []
+    result = []
     for string in s:
         stack, cnt = find110s(string)
-        answer.append(insert110s(stack, cnt))
-    return answer
+        result.append(insert110s(stack, cnt))
+    return result
 
 def find110s(s):
     stack = ""

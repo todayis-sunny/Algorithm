@@ -1,5 +1,5 @@
 def solution(n, times):
-    answer = 0
+    result = 0
     start, end = 1, max(times) * n
     while start <= end:
         mid = (start + end) // 2
@@ -9,9 +9,9 @@ def solution(n, times):
             if people >= n:
                 break
         if people >= n:
-            answer = mid
+            result = mid
             end = mid - 1
         else:
             start = mid + 1
     
-    return answer
+    return result

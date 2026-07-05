@@ -10,9 +10,9 @@ def solution(queue1, queue2):
     dq2 = deque(queue2)
     # 최대횟수 선언
     limit = len(queue1) * 4
-    answer = 0
+    result = 0
     while sq1 != sq2:
-        if answer > limit:
+        if result > limit:
             return -1
         if sq1 < sq2:
             e = dq2.popleft()
@@ -24,9 +24,9 @@ def solution(queue1, queue2):
             sq1 -= e
             sq2 += e
             dq2.append(e)
-        answer += 1
+        result += 1
 
-    return answer
+    return result
 
 
 

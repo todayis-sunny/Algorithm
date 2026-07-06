@@ -1,7 +1,7 @@
 from itertools import permutations
 
 def solution(numbers):
-    answer = []                                   
+    result = []                                   
     nums = [n for n in numbers]                   # numbers를 하나씩 자른 것
     per = []                                      
     for i in range(1, len(numbers)+1):            # numbers의 각 숫자들을 순열로 모든 경우 만들기
@@ -17,6 +17,6 @@ def solution(numbers):
                 check = False
                 break
         if check:
-            answer.append(n)                      # 소수일경우 answer 배열에 추가
+            result.append(n)                      # 소수일경우 answer 배열에 추가
 
-    return len(set(answer))                       # set을 통해 중복 제거 후 반환
+    return len(set(result))                       # set을 통해 중복 제거 후 반환

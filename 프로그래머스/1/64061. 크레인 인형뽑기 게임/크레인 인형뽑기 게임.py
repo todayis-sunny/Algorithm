@@ -1,6 +1,6 @@
 def solution(board, moves):
     stack = []
-    answer = 0
+    result = 0
 
     for i in moves:
         for j in range(len(board)):
@@ -12,7 +12,7 @@ def solution(board, moves):
                     if stack[-1] == stack[-2]:
                         stack.pop(-1)
                         stack.pop(-1)
-                        answer += 2     
+                        result += 2     
                 break
 
-    return answer
+    return result

@@ -39,11 +39,11 @@ def solution(n, paths, gates, summits):
                 heapq.heappush(hq, (nextDist, nextNode))
     
     # 산봉우리 번호, intensity의 최솟값
-    ans = [INF, INF]
+    result = [INF, INF]
     # 반환
     for s in sorted(summits):
-        if distance[s] < ans[1]:
-            ans[0] = s
-            ans[1] = distance[s]
+        if distance[s] < result[1]:
+            result[0] = s
+            result[1] = distance[s]
     
-    return ans
+    return result

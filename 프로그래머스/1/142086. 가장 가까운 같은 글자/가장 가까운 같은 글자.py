@@ -1,14 +1,14 @@
 def solution(s):
     result = []
-    info = []
+    data = []
     for ch in s:
-        if ch in info:
-            for i in range(1, len(info) + 1):
-                if ch == info[-i]:
+        if ch in data:
+            for i in range(1, len(data) + 1):
+                if ch == data[-i]:
                     result.append(i)
                     break
-            info.append(ch)
+            data.append(ch)
         else:
             result.append(-1)
-            info.append(ch)
+            data.append(ch)
     return result

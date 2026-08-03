@@ -1,5 +1,5 @@
 def solution(k, tangerine):
-    cnt = k
+    count = k
     dic = {}
     result = 0
     for t in tangerine:
@@ -9,8 +9,8 @@ def solution(k, tangerine):
             dic[t] += 1
     dic = sorted(dic.items(), key = lambda x : x[1], reverse = True)
     for i in range(len(dic)):
-        cnt -= dic[i][1]
-        if cnt <= 0:
+        count -= dic[i][1]
+        if count <= 0:
             result = i+1
             break
     return result

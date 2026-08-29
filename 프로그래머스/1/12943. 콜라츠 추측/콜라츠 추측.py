@@ -1,5 +1,5 @@
 def solution(num):
-    answer = 0
+    result = 0
     while num != 1:
         # 짝수
         if num % 2 == 0:
@@ -8,8 +8,8 @@ def solution(num):
         else:
             num = num * 3 + 1
             
-        answer += 1
-        if answer == 500:
+        result += 1
+        if result == 500:
             return -1
         
-    return answer
+    return result

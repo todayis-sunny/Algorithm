@@ -1,5 +1,5 @@
 def solution(record):
-    answer = []
+    result = []
     dic = {}
     
     for sentence in record:
@@ -10,8 +10,8 @@ def solution(record):
     for sentence in record:
         sentence_split = sentence.split()
         if sentence_split[0] == 'Enter':
-            answer.append('%s님이 들어왔습니다.' %dic[sentence_split[1]])
+            result.append('%s님이 들어왔습니다.' %dic[sentence_split[1]])
         elif sentence_split[0] == 'Leave':
-            answer.append('%s님이 나갔습니다.' %dic[sentence_split[1]])
+            result.append('%s님이 나갔습니다.' %dic[sentence_split[1]])
             
-    return(answer)
+    return(result)

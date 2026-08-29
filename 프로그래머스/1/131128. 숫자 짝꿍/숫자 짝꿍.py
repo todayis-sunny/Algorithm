@@ -8,7 +8,7 @@ def solution(X, Y):
         return "0"
     
     numsOrder = sorted(list(nums), reverse = True)
-    answer = ''
+    result = ""
     for num in numsOrder:
-        answer += num * nums[num]
-    return answer
+        result += num * nums[num]
+    return result

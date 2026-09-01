@@ -8,8 +8,8 @@ def solution(clothes):
             closet[kind] = [name]
     
     # A의 종류가 N개, B의 종류가 M개 일 때 가능한 모든 경우의 수 (N+1)(M+1)
-    answer = 1
+    result = 1
     for _, value in closet.items():
-        answer *= (len(value) + 1)
+        result *= (len(value) + 1)
         
-    return answer - 1
+    return result - 1

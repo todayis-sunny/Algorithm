@@ -1,3 +1,3 @@
 a, b = map(int, input().strip().split(' '))
-answer = ('*' * a + '\n') * b
-print(answer)
+result = ('*' * a + '\n') * b
+print(result)

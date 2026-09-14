@@ -1,11 +1,11 @@
 def solution(n, s):
     if n > s:
         return [-1]
-    ans = []
+    result = []
     tmp = s // n
     cnt = s - tmp * n
     for _ in range(n - cnt):
-        ans.append(tmp)
+        result.append(tmp)
     for _ in range(cnt):
-        ans.append(tmp + 1)
-    return ans
+        result.append(tmp + 1)
+    return result

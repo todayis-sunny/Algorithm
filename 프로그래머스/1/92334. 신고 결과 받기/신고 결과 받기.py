@@ -24,7 +24,7 @@ def solution(id_list, report, k):
         reportCnt[rFi][rTi] = 1
     
     # 메일 발송하기
-    mail = [0] * size
+    result = [0] * size
     for i in range(size):
         # k 기준치를 넘지 못하면 스킵
         if reportCnt[i][size] < k:
@@ -32,6 +32,6 @@ def solution(id_list, report, k):
         for j in range(size):
             # 신고 이력이 있으면 메일 발송
             if reportCnt[j][i]:
-                mail[j] += 1
+                result[j] += 1
                 
-    return mail
+    return result

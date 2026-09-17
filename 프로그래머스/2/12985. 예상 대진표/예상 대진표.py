@@ -1,8 +1,8 @@
 def solution(n,a,b):
     # 발생할 수 있는 최대 라운드 수 계산
-    max_round = 0
-    while 2 ** max_round < n:
-        max_round += 1
+    result = 0
+    while 2 ** result < n:
+        result += 1
     
     # 이진 탐색 적용
     a, b = min(a, b), max(a, b)  # 큰 수, 작은 수 구분
@@ -18,11 +18,11 @@ def solution(n,a,b):
         elif a >= mid:
             lower = mid
             mid = (mid + upper) // 2
-            max_round -= 1  # 라운드값 -1
+            result -= 1  # 라운드값 -1
         # 큰 수가 중간값보다 작거나 같을 경우(라운드에서 두 수가 같은 그룹에 있을 경우)
         elif b <= mid:
             upper = mid
             mid = (mid + lower) // 2
-            max_round -= 1  # 라운드값 -1
+            result -= 1  # 라운드값 -1
             
-    return max_round
+    return result

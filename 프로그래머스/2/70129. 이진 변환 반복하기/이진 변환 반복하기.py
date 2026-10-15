@@ -1,7 +1,7 @@
 def solution(x):
     result = []
     
-    cnt = 0
+    count = 0
     zero = 0
     
     while True:
@@ -12,8 +12,8 @@ def solution(x):
         
         x = bin(len(x))[2:]
         
-        cnt = cnt + 1
+        count = count + 1
     
-    result = [cnt, zero]
+    result = [count, zero]
     
     return result

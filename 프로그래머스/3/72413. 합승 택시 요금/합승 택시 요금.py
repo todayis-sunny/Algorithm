@@ -29,8 +29,8 @@ def solution(n, s, a, b, fares):
     # i번째(특정 노드)에서 시작해서 모든 정점으로 도착하는 최단거리를 미리 구함.
     D = [0] + [dijkstra(i) for i in range(1, n+1)]
     
-    path = INF
+    result = INF
     for i in range(1, n+1):
-        path = min(path, D[s][i] + D[i][a] + D[i][b])
+        result = min(result, D[s][i] + D[i][a] + D[i][b])
         
-    return path
+    return result

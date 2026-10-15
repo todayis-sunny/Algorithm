@@ -18,7 +18,7 @@ def bfs(graph, visited, n):
 
 def solution(n, wires):
     graph = [[False] * (n + 1) for _ in range(n + 1)]
-    answer = 1e9
+    result = 1e9
     
     for w1, w2 in wires:
         graph[w1][w2] = True
@@ -31,5 +31,5 @@ def solution(n, wires):
         cnt = bfs(graph, visited, n)
         graph[w1][w2] = True
         graph[w2][w1] = True
-        answer = min(answer, abs(cnt - (n - cnt)))
-    return answer
+        result = min(result, abs(cnt - (n - cnt)))
+    return result

@@ -1,8 +1,8 @@
 def solution(s):
     stack = []
-    for c in s:
-        if c == "(":
-            stack.append(c)
+    for ch in s:
+        if ch == '(':
+            stack.append(ch)
         else:
             if stack:
                 stack.pop()

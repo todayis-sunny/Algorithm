@@ -5,9 +5,9 @@ def check(a, b, c):
     return True
 
 def solution(nums):
-    ans = 0
+    result = 0
     for i in range(0, len(nums) - 2):
         for j in range(i + 1, len(nums) - 1):
             for k in range(j + 1, len(nums)):
-                if check(nums[i], nums[j], nums[k]): ans += 1
-    return ans
+                if check(nums[i], nums[j], nums[k]): result += 1
+    return result

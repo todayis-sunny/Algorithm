@@ -1,5 +1,5 @@
+MOD = 1_000_000_007
 def solution(m, n, puddles):
-    MOD = 1_000_000_007
     
     dp = [[0] * (m + 1) for _ in range(n + 1)]
     

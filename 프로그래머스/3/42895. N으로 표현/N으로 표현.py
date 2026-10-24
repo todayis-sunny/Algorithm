@@ -12,7 +12,7 @@ def solution(N, number):
                     dp[i].add(num1 - num2)
                     dp[i].add(num1 * num2)
                     if num2 != 0:
-                        dp[i].add(num1//num2)
+                        dp[i].add(num1 // num2)
         # number가 연산한 결과에 있으면 답으로 반환
         if number in dp[i]:
             return i + 1 

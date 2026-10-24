@@ -11,7 +11,6 @@ def solution(n, edge):
 
 
 def bfs(adj, visited):
-    global ans
     maxDist = -1
     count = 0
     q = deque([(1, 0)])

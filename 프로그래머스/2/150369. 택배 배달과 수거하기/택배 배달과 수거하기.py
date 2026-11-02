@@ -1,5 +1,5 @@
 def solution(cap, n, deliveries, pickups):
-    answer = 0
+    result = 0
     flag = True
     dStart = n-1
     pStart = n-1
@@ -36,6 +36,6 @@ def solution(cap, n, deliveries, pickups):
         tmp = max(dIdx, pIdx)
         if tmp == -1:
             flag = False
-        answer += (tmp + 1) * 2
+        result += (tmp + 1) * 2
         
-    return answer
+    return result

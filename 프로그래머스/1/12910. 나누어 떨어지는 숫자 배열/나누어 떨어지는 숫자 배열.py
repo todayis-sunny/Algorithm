@@ -1,9 +1,9 @@
 def solution(arr, divisor):
-    answer = []
+    result = []
     for a in arr:
         if a % divisor == 0:
-            answer.append(a)
-    if answer:
-        return sorted(answer)
+            result.append(a)
+    if result:
+        return sorted(result)
     
     return [-1]

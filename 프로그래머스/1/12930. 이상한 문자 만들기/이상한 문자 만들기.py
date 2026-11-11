@@ -1,7 +1,7 @@
 def solution(s):
     result = ""
-    arr = s.split(" ")
-    for s in arr:
+    info = s.split(" ")
+    for s in info:
         for i, x in enumerate(s):
             result += x.upper() if i % 2 == 0 else x.lower()
         result += " "

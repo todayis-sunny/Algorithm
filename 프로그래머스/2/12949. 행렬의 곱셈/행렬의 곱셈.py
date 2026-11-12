@@ -5,9 +5,9 @@ def solution(arr1, arr2):
         array = arr1[i]
         info = []
         for j in range(r):
-            hap = 0
+            total = 0
             for k in range(n):
-                hap += array[k] * arr2[k][j]
-            info.append(hap)
+                total += array[k] * arr2[k][j]
+            info.append(total)
         result.append(info)
     return result

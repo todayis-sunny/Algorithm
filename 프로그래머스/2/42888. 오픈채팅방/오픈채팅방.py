@@ -9,9 +9,9 @@ def solution(record):
             
     for sentence in record:
         sentence_split = sentence.split()
-        if sentence_split[0] == 'Enter':
-            result.append('%s님이 들어왔습니다.' %dic[sentence_split[1]])
+        if sentence_split[0] == "Enter":
+            result.append("%s님이 들어왔습니다." %dic[sentence_split[1]])
         elif sentence_split[0] == 'Leave':
-            result.append('%s님이 나갔습니다.' %dic[sentence_split[1]])
+            result.append("%s님이 나갔습니다." %dic[sentence_split[1]])
             
     return(result)

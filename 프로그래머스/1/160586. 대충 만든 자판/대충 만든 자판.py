@@ -1,5 +1,5 @@
 def solution(keymap, targets):
-    answer = []
+    result = []
 
     for word in targets:    # targets에 있는 한 단어에 대해서
         times = 0           # 누른 키 총합
@@ -18,7 +18,7 @@ def solution(keymap, targets):
             
             times += time          # 하나의 문자에 대해 누른 키를 총합(키)에 더해줌
             
-        answer.append(times)        
+        result.append(times)        
         # targets에 있는 하나의 단어에 대해 수행이 끝났으면 answer에 누른 키 총합을 넣어줌
     
-    return answer
+    return result

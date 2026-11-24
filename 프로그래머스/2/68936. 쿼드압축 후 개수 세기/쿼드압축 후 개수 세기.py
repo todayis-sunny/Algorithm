@@ -4,8 +4,8 @@ def solution(arr):
     
     def compression(a, b, l):
         start = arr[a][b]
-        for i in range(a,a+l):
-            for j in range(b,b+l):
+        for i in range(a, a + l):
+            for j in range(b, b + l):
                 if arr[i][j] != start:
                     l = l // 2
                     compression(a, b, l)

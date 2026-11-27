@@ -12,7 +12,7 @@ def solution(numbers):
             tempList[rIdx] = '1'
             tempList[rIdx + 1] = '0'
             
-            tempStr = "".join(tempList)
+            tempStr = ''.join(tempList)
             
             result.append(int(tempStr, 2))
                 
